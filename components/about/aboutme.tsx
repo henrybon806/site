@@ -6,7 +6,7 @@ import AboutTitle from "./title";
 import BioParagraphs from "./bio";
 import StatsRow from "./statrow";
 import Portrait from "./portrait";
-import PhotoCard from "./photoCard";
+import PhotoCard from "./photocard";
 
 export default function AboutPage() {
   const { width } = useWindowDimensions();
