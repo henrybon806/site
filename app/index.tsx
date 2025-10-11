@@ -1,15 +1,20 @@
-import { Text, View } from "react-native";
+import AboutPage from "@/components/about/aboutme";
+import Hero from "@/components/landing/landing";
+import { View, StyleSheet } from "react-native";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <>
+      <View style={styles.page}>
+        <Hero />
+        <AboutPage />
+      </View>
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  page: {
+     flex: 1, 
+  },
+});
