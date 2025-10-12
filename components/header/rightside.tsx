@@ -89,13 +89,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: "#2e2e2e",
+    color: "#555555", // Changed to darker gray for contrast with white background
     fontWeight: "300",
   },
   active: {
-    color: "#0ea5a5",
+    color: "#000000", // Changed to black for active items
   },
   pressed: {
-    opacity: 0.6,
+    opacity: 0.8,
+    backgroundColor: "rgba(0,0,0,0.05)", // Subtle gray highlight when pressed
   },
 });

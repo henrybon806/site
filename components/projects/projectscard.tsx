@@ -1,14 +1,14 @@
+import { Ionicons } from "@expo/vector-icons";
 import React, { useRef, useState } from "react";
 import {
-  Animated,
-  Image,
-  Linking,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
+    Animated,
+    Image,
+    Linking,
+    Pressable,
+    StyleSheet,
+    Text,
+    View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import Tag from "./tag";
 
 export type ProjectCardData = {
@@ -50,22 +50,26 @@ export default function ProjectCard({ data }: { data: ProjectCardData }) {
       >
         <Image source={data.image} style={styles.img} />
         <View style={styles.content}>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text style={styles.year}>{data.year}</Text>
-          <Text style={styles.summary}>{data.summary}</Text>
+          <View style={styles.upperContent}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.year}>{data.year}</Text>
+            <Text style={styles.summary}>{data.summary}</Text>
+          </View>
+          
+          <View style={styles.bottomContent}>
+            {!!data.tags?.length && (
+              <View style={styles.tags}>
+                {data.tags.map((t, i) => <Tag key={i} text={t} />)}
+              </View>
+            )}
 
-          {!!data.tags?.length && (
-            <View style={styles.tags}>
-              {data.tags.map((t, i) => <Tag key={i} text={t} />)}
-            </View>
-          )}
-
-          {data.linkUrl ? (
-            <Pressable style={styles.linkRow} onPress={() => Linking.openURL(data.linkUrl!)}>
-              <Ionicons name="open-outline" size={16} color="#2563EB" />
-              <Text style={styles.linkText}>{data.linkText ?? "Open"}</Text>
-            </Pressable>
-          ) : null}
+            {data.linkUrl ? (
+              <Pressable style={styles.linkRow} onPress={() => Linking.openURL(data.linkUrl!)}>
+                <Ionicons name="open-outline" size={16} color="#2563EB" />
+                <Text style={styles.linkText}>{data.linkText ?? "Open"}</Text>
+              </Pressable>
+            ) : null}
+          </View>
         </View>
 
         <Pressable style={styles.infoBtn} onPress={() => flipTo(true)} accessibilityLabel="Flip for more">
@@ -109,7 +113,7 @@ export default function ProjectCard({ data }: { data: ProjectCardData }) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { padding: 8 },
+  wrap: { padding: 8, height: '100%' },
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
@@ -120,21 +124,44 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 4 },
+    height: '100%',
 
     // 3D flip niceties (RN web understands these enough)
     backfaceVisibility: "hidden" as any,
   },
-  front: { position: "relative" },
+  front: { position: "relative", height: '100%' },
   back:  { position: "absolute", top: 8, left: 8, right: 8, bottom: 8 },
 
   img: { width: "100%", height: 170, backgroundColor: "#F3F4F6" },
-  content: { padding: 14, gap: 6 },
+  content: { 
+    padding: 14, 
+    flex: 1,
+    display: 'flex', 
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  upperContent: { 
+    marginBottom: 12 
+  },
+  bottomContent: { 
+    marginTop: 'auto'
+  },
   title: { fontSize: 16, fontWeight: "800", color: "#111827" },
   year: { fontSize: 12, color: "#6B7280" },
-  summary: { fontSize: 13, color: "#374151", lineHeight: 19, marginTop: 2 },
-  tags: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 8 },
+  summary: { fontSize: 13, color: "#374151", lineHeight: 19, marginTop: 2, marginBottom: 12 },
+  tags: { 
+    flexDirection: "row", 
+    flexWrap: "wrap", 
+    gap: 6, 
+    marginBottom: 10
+  },
 
-  linkRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10 },
+  linkRow: { 
+    flexDirection: "row", 
+    alignItems: "center", 
+    gap: 6,
+    marginTop: 4
+  },
   linkText: { color: "#2563EB", fontSize: 13, fontWeight: "600" },
 
   infoBtn: {
@@ -146,7 +173,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 6, shadowOffset: { width: 0, height: 2 },
   },
 
-  backContent: { padding: 14 },
+  backContent: { padding: 14, height: '100%', display: 'flex', flexDirection: 'column' },
   backTitle: { fontSize: 14, fontWeight: "800", color: "#111827" },
   liRow: { flexDirection: "row", gap: 8, alignItems: "flex-start", marginTop: 6 },
   liText: { flex: 1, fontSize: 13, color: "#374151", lineHeight: 19 },

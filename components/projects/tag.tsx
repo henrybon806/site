@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Tag({ text }: { text: string }) {
   return (
@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: "#F3F4F6",
+    backgroundColor: "#EEF2FF", // Lighter indigo background
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: "#C7D2FE", // Indigo border
   },
-  label: { fontSize: 12, color: "#374151" },
+  label: { fontSize: 12, color: "#4F46E5", fontWeight: "600" }, // Indigo text, semi-bold
 });

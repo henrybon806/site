@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Container from "../layout/container";
 import ProjectGrid from "./projectsgrid";
@@ -66,21 +66,31 @@ export default function ProjectsPage() {
       ],
       learnings: ["UX for classrooms, permission flows, resilience offline."],
     },
-    // {
-    //   title: "Solar Data API",
-    //   year: "2024",
-    //   image: { uri: "https://placehold.co/640x400?text=Solar+API" },
-    //   summary: "Irradiance pipeline + API for forecasting experiments.",
-    //   tags: ["Python", "ETL", "REST"],
-    //   linkText: "Docs",
-    //   linkUrl: "https://example.com",
-    //   details: ["Hourly ingestion, QC, and normalized endpoints.", "Simple token auth + rate limits."],
-    //   learnings: ["ETL reliability, metrics, and backfills."],
-    // },
+    {
+      title: "Solar Data API",
+      year: "2024",
+      image: { uri: "https://placehold.co/640x400?text=Solar+API" },
+      summary: "Irradiance pipeline + API for forecasting experiments.",
+      tags: ["Python", "ETL", "REST"],
+      linkText: "Docs",
+      linkUrl: "https://example.com",
+      details: ["Hourly ingestion, QC, and normalized endpoints.", "Simple token auth + rate limits."],
+      learnings: ["ETL reliability, metrics, and backfills."],
+    },
+    {
+      title: "Solar Data API",
+      year: "2024",
+      image: { uri: "https://placehold.co/640x400?text=Solar+API" },
+      summary: "Irradiance pipeline + API for forecasting experiments.",
+      tags: ["Python", "ETL", "REST"],
+      linkText: "Docs",
+      linkUrl: "https://example.com",
+      details: ["Hourly ingestion, QC, and normalized endpoints.", "Simple token auth + rate limits."],
+      learnings: ["ETL reliability, metrics, and backfills."],
+    },
   ];
 
-  const FEATURED_COUNT = 4; // default number of featured projects to show
-  const visible = useMemo(() => (showAll ? projects : projects.slice(0, FEATURED_COUNT)), [showAll, projects]);
+  const FEATURED_COUNT = 3; // default number of featured projects to show
 
   return (
     <>
@@ -91,7 +101,10 @@ export default function ProjectsPage() {
             A few favorites. Tap the ⓘ on any card to flip for build notes and links.
           </Text>
 
-          <ProjectGrid items={visible} />
+          <ProjectGrid 
+            items={projects.slice(0, FEATURED_COUNT)}
+            featured={true}
+          />
 
           {projects.length > FEATURED_COUNT && (
             <View style={styles.moreWrap}>
@@ -101,8 +114,19 @@ export default function ProjectsPage() {
                 onPress={() => setShowAll((s) => !s)}
                 style={({ pressed }) => [styles.moreBtn, pressed && { opacity: 0.9 }]}
               >
-                <Text style={styles.moreText}>{showAll ? "Show less" : "Show more"}</Text>
+                <Text style={styles.moreText}>
+                  {showAll ? "Show less" : `Show ${projects.length - FEATURED_COUNT} more`}
+                </Text>
               </Pressable>
+            </View>
+          )}
+          
+          {showAll && projects.length > FEATURED_COUNT && (
+            <View style={styles.additionalSection}>
+              <ProjectGrid 
+                items={projects.slice(FEATURED_COUNT)}
+                featured={true} /* Use the same layout for both sections */
+              />
             </View>
           )}
         </Container>
@@ -123,4 +147,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#111827",
   },
   moreText: { color: "#FFFFFF", fontWeight: "700" },
+  additionalSection: { 
+    width: '100%',
+    marginTop: 8,
+    alignItems: 'center'
+  },
 });

@@ -1,6 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, useWindowDimensions } from "react-native";
-import { Stack } from "expo-router";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
 import EduCard, { EduItem } from "./educard";
 import AwardCard, { AwardItem } from "./award";
 import Container from "../layout/container";
@@ -28,7 +27,7 @@ export default function EducationAwardsPage() {
       location: "Tucson, AZ",
       date: "Aug 2020 – May 2024",
       details: ["FTC robotics president & lead programmer", "Multiple state championships (team)"],
-      badge: "STEM & Robotics",
+      badge: "Outstanding Senior",
       tone: "purple",
     },
   ];

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   brand: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#0b0b0b",
+    color: "#000000", // Changed to black to match with white background
     paddingVertical: 4, // Add some padding for better touch target
   },
 });
