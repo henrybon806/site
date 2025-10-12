@@ -38,6 +38,34 @@ export default function ProjectsPage() {
       ],
       learnings: ["UX for classrooms, permission flows, resilience offline."],
     },
+        {
+      title: "Spike Inclusive (iPad)",
+      year: "2024",
+      image: { uri: "https://placehold.co/640x400?text=Spike+Inclusive" },
+      summary: "Accessible robotics education app for LEGO Spike via BLE.",
+      tags: ["Expo", "BLE", "Education"],
+      linkText: "App page",
+      linkUrl: "https://apps.apple.com",
+      details: [
+        "Custom blocks & guided flows for diverse learners.",
+        "Deployed in school district classrooms.",
+      ],
+      learnings: ["UX for classrooms, permission flows, resilience offline."],
+    },
+        {
+      title: "Spike Inclusive (iPad)",
+      year: "2024",
+      image: { uri: "https://placehold.co/640x400?text=Spike+Inclusive" },
+      summary: "Accessible robotics education app for LEGO Spike via BLE.",
+      tags: ["Expo", "BLE", "Education"],
+      linkText: "App page",
+      linkUrl: "https://apps.apple.com",
+      details: [
+        "Custom blocks & guided flows for diverse learners.",
+        "Deployed in school district classrooms.",
+      ],
+      learnings: ["UX for classrooms, permission flows, resilience offline."],
+    },
     // {
     //   title: "Solar Data API",
     //   year: "2024",
@@ -51,12 +79,12 @@ export default function ProjectsPage() {
     // },
   ];
 
-  const FEATURED_COUNT = 1; // default number of featured projects to show
+  const FEATURED_COUNT = 4; // default number of featured projects to show
   const visible = useMemo(() => (showAll ? projects : projects.slice(0, FEATURED_COUNT)), [showAll, projects]);
 
   return (
     <>
-      <View style={styles.page}>
+      <View>
         <Container>
           <Text style={styles.h1}>Projects</Text>
           <Text style={styles.lead}>

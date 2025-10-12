@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, View, Text } from "react-native";
-import { Stack } from "expo-router";
+
 import Container from "../layout/container";
 import SectionTitle from "../experience/title";
 import ContactList from "./list";
@@ -8,7 +8,7 @@ import ContactList from "./list";
 export default function ContactPage() {
   return (
     <>
-      <View style={styles.page} >
+      <View>
         <Container>
           <SectionTitle title="Get In Touch" />
           <Text style={styles.lead}>

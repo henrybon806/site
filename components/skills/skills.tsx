@@ -1,6 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, useWindowDimensions } from "react-native";
-import { Stack } from "expo-router";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
 import Container from "../layout/container";
 import SectionTitle from "../experience/title";
 import TextCard from "./textcard";
@@ -13,7 +12,7 @@ export default function SkillsPage() {
 
   return (
     <>
-      <View style={styles.page}>
+      <View>
         <Container>
           <SectionTitle title="Skills & Expertise" />
           <View style={styles.leadWrap}>

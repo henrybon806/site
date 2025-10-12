@@ -1,14 +1,23 @@
+import { useScrollContext } from "@/context/ScrollContext";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type HeaderLeftProps = {
   name?: string;
 };
 
 export default function HeaderLeft({ name = "Erik Kizior" }: HeaderLeftProps) {
+  const { scrollViewRef } = useScrollContext();
+  
+  const scrollToTop = () => {
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.brand}>{name}</Text>
+      <Pressable onPress={scrollToTop} accessibilityRole="button" accessibilityLabel="Scroll to top">
+        <Text style={styles.brand}>{name}</Text>
+      </Pressable>
     </View>
   );
 }
@@ -19,5 +28,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#0b0b0b",
+    paddingVertical: 4, // Add some padding for better touch target
   },
 });

@@ -1,12 +1,11 @@
 import React from "react";
-import { View, StyleSheet, useWindowDimensions, ScrollView } from "react-native";
-import { Stack } from "expo-router";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
 import Container from "../layout/container";
-import AboutTitle from "./title";
 import BioParagraphs from "./bio";
-import StatsRow from "./statrow";
-import Portrait from "./portrait";
 import PhotoCard from "./photocard";
+import Portrait from "./portrait";
+import StatsRow from "./statrow";
+import AboutTitle from "./title";
 
 export default function AboutPage() {
   const { width } = useWindowDimensions();
@@ -14,8 +13,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <Stack.Screen options={{ title: "About", headerShown: true }} />
-      <View style={{ flex: 1, backgroundColor: "#F5F6FB" }}>
+      <View >
         <Container>
           <AboutTitle />
 
@@ -32,7 +30,7 @@ export default function AboutPage() {
 
             <View style={styles.rightCol}>
               <Portrait
-                source={{ uri: "https://placehold.co/600x600.jpg" }} // replace with your portrait URL or require()
+                source={require("../../assets/images/profile.jpeg")}
                 size={240}
               />
             </View>
@@ -40,7 +38,7 @@ export default function AboutPage() {
 
           <PhotoCard
             title="A favorite moment"
-            image={{ uri: "https://placehold.co/1000x700.jpg" }} // swap for your photo
+            image={require("../../assets/images/fll.jpg")}
             caption="Weekend hike with my corgi co-pilot."
           />
         </Container>

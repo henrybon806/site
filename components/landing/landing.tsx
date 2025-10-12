@@ -1,14 +1,13 @@
+import { useScrollContext } from "@/context/ScrollContext";
 import * as Linking from "expo-linking";
-import { router } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import CircleIconButton from "./circlebutton";
 import PrimarySquareButton from "./squarebutton";
 
 type Props = { name?: string; subtitle?: string };
 
 const openInNewTab = (url: string) => {
-  // Check if we're in a web environment
   if (typeof window !== 'undefined' && window.open) {
     window.open(url, '_blank', 'noopener,noreferrer');
   } else {
@@ -20,8 +19,15 @@ export default function Hero({
   name = "Henry Bonomolo",
   subtitle = "Software Developer & System Designer",
 }: Props) {
+  const { height: windowHeight } = useWindowDimensions();
+  const { scrollToSection } = useScrollContext();
+  
+  const handleExploreClick = () => {
+    scrollToSection("About");
+  };
+  
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, { minHeight: windowHeight }]}>
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
 
@@ -43,7 +49,7 @@ export default function Hero({
         />
       </View>
 
-      <PrimarySquareButton label="Explore" onPress={() => router.push("/")} />
+      <PrimarySquareButton label="Explore" onPress={handleExploreClick} />
     </View>
   );
 }
@@ -51,6 +57,7 @@ export default function Hero({
 const styles = StyleSheet.create({
   root: {
     minHeight: 520,
+    flexGrow: 1,
     paddingHorizontal: 16,
     alignItems: "center",
     justifyContent: "center",

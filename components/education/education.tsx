@@ -13,20 +13,20 @@ export default function EducationAwardsPage() {
 
   const education: EduItem[] = [
     {
-      degree: "B.S. in Computer Science (CDSS)",
+      degree: "B.A. in Computer Science",
       school: "University of California, Berkeley",
       link: "https://cdss.berkeley.edu/",
       location: "Berkeley, CA",
-      date: "Aug 2023 – May 2027 (anticipated)",
+      date: "Aug 2024 – May 2027",
       details: ["Courses: CS61A/B, CS70, CS188, Math 54, UGBA 10X, ENVDES 5"],
       badge: "Undergraduate, CS ’27",
       tone: "blue",
     },
     {
       degree: "High School Diploma",
-      school: "Clovis North High School",
-      location: "Clovis, CA",
-      date: "Aug 2019 – May 2023",
+      school: "Catalina Foothills High School",
+      location: "Tucson, AZ",
+      date: "Aug 2020 – May 2024",
       details: ["FTC robotics president & lead programmer", "Multiple state championships (team)"],
       badge: "STEM & Robotics",
       tone: "purple",
@@ -35,26 +35,35 @@ export default function EducationAwardsPage() {
 
   const awards: AwardItem[] = [
     {
-      title: "FTC Robotics Leadership & Championships",
-      org: "FIRST Tech Challenge",
-      date: "2020 – 2023",
+      title: "Java Certified Foundations Associate",
+      org: "ORACLE",
+      date: "2024",
       description: "Led programming & analytics; helped team capture multiple state titles and compete at high levels.",
       link: "https://www.firstinspires.org/robotics/ftc",
       tone: "indigo",
     },
     {
-      title: "Undergraduate Teaching & Mentorship",
-      org: "UC Berkeley / Community",
-      date: "2023 – Present",
+      title: "Mentor and Coach Award",
+      org: "FIRST LEGO League",
+      date: "2023",
       description: "Mentored peers and K–12 students; built ARES and Spike Inclusive to support learning at scale.",
       link: "https://github.com/ares-hq",
       tone: "green",
     },
     {
-      title: "Research & Product Builder",
-      org: "Energesque / UArizona / Personal",
-      date: "2023 – Present",
+      title: "Gold Seal of Biliteracy: Spanish",
+      org: "State of Arizona",
+      date: "2024",
       description: "Solar Data API pipeline, RMSSD Android app for stress research, and AI/EDA experiments.",
+      link: "https://az.gov",
+      tone: "amber",
+    },
+    {
+      title: "National Hispanic Scholar & AP Scholar Award with Distinction",
+      org: "Advanced Placement",
+      date: "2022-2024",
+      description: "Solar Data API pipeline, RMSSD Android app for stress research, and AI/EDA experiments.",
+      link: "https://az.gov",
       tone: "amber",
     },
   ];
@@ -68,7 +77,7 @@ export default function EducationAwardsPage() {
 
   return (
     <>
-      <View style={styles.page}>
+      <View>
         <Container>
           <SectionTitle title="Education & Awards" />
 
