@@ -1,5 +1,6 @@
 
 import Header from "@/components/header/header";
+import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
 import LifeBackground from "@/context/background";
 import { ScrollProvider, useScrollContext } from "@/context/ScrollContext";
 import { Slot } from "expo-router";
@@ -15,7 +16,7 @@ export default function RootLayout() {
 }
 
 function AppContent() {
-  const { scrollViewRef } = useScrollContext();
+  const { scrollViewRef, handleScroll } = useScrollContext();
   
   return (
     <View style={{ flex: 1 }}>
@@ -24,6 +25,8 @@ function AppContent() {
         ref={scrollViewRef} 
         style={{ flex: 1 }} 
         contentContainerStyle={{ flexGrow: 1 }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
         <LifeBackground 
           cellSize={16}
@@ -36,6 +39,9 @@ function AppContent() {
         />
         <Slot />
       </ScrollView>
+      
+      {/* Progress bar at bottom of screen */}
+      {typeof window !== 'undefined' && <ScrollProgressBar />}
     </View>
   );
 }
