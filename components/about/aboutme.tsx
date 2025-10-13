@@ -17,10 +17,22 @@ export default function AboutPage() {
         <Container>
           <AboutTitle />
 
+          {/* On mobile: show the title (above), then the portrait centered, then the bio + stats.
+              On wide screens: show the original two-column layout with portrait on the right. */}
+          {!isWide && (
+            <View style={styles.mobilePortraitWrap}>
+              <Portrait
+                source={require("../../assets/images/profile.jpeg")}
+                size={300}
+              />
+            </View>
+          )}
+
           <View style={[styles.hero, isWide ? styles.heroRow : styles.heroCol]}>
-            <View style={styles.leftCol}>
-              <BioParagraphs />
+            <View style={[styles.leftCol, !isWide && styles.leftColCenter]}>
+              <BioParagraphs center={!isWide} />
               <StatsRow
+                center={!isWide}
                 items={[
                   { value: "5+", label: "Projects built" },
                   { value: "3.67", label: "UC Berkeley GPA" },
@@ -28,18 +40,20 @@ export default function AboutPage() {
               />
             </View>
 
-            <View style={styles.rightCol}>
-              <Portrait
-                source={require("../../assets/images/profile.jpeg")}
-                size={240}
-              />
-            </View>
+            {isWide && (
+              <View style={styles.rightCol}>
+                <Portrait
+                  source={require("../../assets/images/profile.jpeg")}
+                  size={350}
+                />
+              </View>
+            )}
           </View>
 
           <PhotoCard
             title="A favorite moment"
             image={require("../../assets/images/fll.jpg")}
-            caption="Weekend hike with my corgi co-pilot."
+            caption="Team photo after receiving the FIRST Lego League Mentor & Coach award."
           />
         </Container>
       </View>
@@ -48,10 +62,13 @@ export default function AboutPage() {
 }
 
 const styles = StyleSheet.create({
-  hero: { marginTop: 24, gap: 24, alignItems: "center" },
+  hero: { marginTop: 24, gap: 60, alignItems: "center", paddingHorizontal: 40 },
   heroRow: { flexDirection: "row", justifyContent: "space-between" },
-  heroCol: { flexDirection: "column" },
+  heroCol: { flexDirection: "column", alignItems: "center" },
 
-  leftCol: { flex: 1, maxWidth: 700, gap: 18, alignSelf: "stretch" },
-  rightCol: { width: 280, alignItems: "center" },
+  leftCol: { flex: 1, gap: 18, alignSelf: "stretch" },
+  rightCol: { width: 350, alignItems: "stretch" },
+
+  mobilePortraitWrap: { width: "100%", alignItems: "center", marginTop: 8, marginBottom: 8 },
+  leftColCenter: { alignItems: "center" },
 });

@@ -1,16 +1,15 @@
 import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Stack } from "expo-router";
+import { StyleSheet, View } from "react-native";
 import Container from "../layout/container";
-import SectionTitle from "./title";
 import ExperienceTimeline from "./timeline";
+import SectionTitle from "./title";
 
 export default function ExperiencePage() {
   return (
     <>
-      <View>
+      <View style={styles.page}>
         <Container>
-          <SectionTitle title="Experience" />
+          <SectionTitle title="Experience" accent="#16A34A" />
 
           <ExperienceTimeline
             items={[
@@ -63,5 +62,5 @@ export default function ExperiencePage() {
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: "#F5F6FB" },
+  page: { flex: 1 },
 });

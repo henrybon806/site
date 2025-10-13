@@ -33,12 +33,12 @@ export default function MazeSearchViz({
   wallColor = "#000000",
   pathColor = "#ffffff", 
   visitedColor = "#000000",
-  startColor = "#10b981", // Restored green color for start point
+  startColor = "#10b981",
   endColor = "#ef4444",
   bgColor = "#000000",
   opacity = 0.95,
-  tickMs = 30,
-  algorithmSwitchMs = 10000,
+  tickMs = 1,
+  algorithmSwitchMs = 10000000,
 }: Props = {}) {
   const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight - 80 });
   

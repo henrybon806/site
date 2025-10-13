@@ -32,7 +32,7 @@ export default function ContactPage() {
     <View style={styles.page}>
       <Container>
         <View style={styles.inner}>
-          <SectionTitle title="Get in touch" />
+          <SectionTitle title="Get in touch" accent="#111827" />
 
           <Text style={styles.lead}>
             I enjoy meeting people and building things together. If you want to connect,
@@ -61,12 +61,12 @@ export default function ContactPage() {
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: "#F7F8FB", paddingVertical: 18 },
+  page: { flex: 1, backgroundColor: "#F5F7FA", paddingVertical: 18 },
   inner: { alignItems: "center" },
   lead: {
     marginTop: 6,
     textAlign: "center",
-    color: "#4B5563",
+    color: "#334155",
     fontSize: 15,
     lineHeight: 22,
     maxWidth: 720,
@@ -80,15 +80,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     marginTop: 16,
     borderWidth: 1,
-    borderColor: "#E6E9EE",
+    borderColor: "#E2E8F0",
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "#0b1220",
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.06,
-    shadowRadius: 18,
+    shadowOpacity: 0.04,
+    shadowRadius: 14,
     elevation: 3,
   },
-  caption: { textAlign: "center", color: "#6B7280", marginTop: 12, marginBottom: 6 },
+  caption: { textAlign: "center", color: "#4B5563", marginTop: 12, marginBottom: 6 },
   cta: {
     marginTop: 14,
     backgroundColor: "#111827",
@@ -98,4 +98,5 @@ const styles = StyleSheet.create({
   },
   ctaPressed: { opacity: 0.9 },
   ctaText: { color: "#FFFFFF", fontWeight: "700" },
+  // theme accents (for future use)
 });

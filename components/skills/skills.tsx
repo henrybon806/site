@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, View, useWindowDimensions } from "react-native";
-import Container from "../layout/container";
 import SectionTitle from "../experience/title";
-import TextCard from "./textcard";
-import SkillCarousel from "./carousel";
+import Container from "../layout/container";
 import BulletCard from "./bulletcard";
+import SkillCarousel from "./carousel";
+import TextCard from "./textcard";
 
 export default function SkillsPage() {
   const { width } = useWindowDimensions();
@@ -14,7 +14,7 @@ export default function SkillsPage() {
     <>
       <View>
         <Container>
-          <SectionTitle title="Skills & Expertise" />
+          <SectionTitle title="Skills & Expertise" accent="#F97316" />
           <View style={styles.leadWrap}>
             <TextCard text="I believe in learning through doing and teaching. My expertise comes from real projects (ARES, Spike Inclusive, FitRealm), research/internships, and mentoring communities—from FTC robotics to Berkeley courses." />
           </View>
@@ -98,7 +98,7 @@ export default function SkillsPage() {
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: "#F5F6FB" },
+  page: { flex: 1 },
   leadWrap: { marginTop: 6, marginBottom: 10 },
   grid: { gap: 18 },
   row: { flexDirection: "row", alignItems: "flex-start" },

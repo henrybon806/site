@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Pressable, Linking } from "react-native"
-import { Ionicons, Feather } from "@expo/vector-icons"
+import { Feather, Ionicons } from "@expo/vector-icons"
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native"
 
 export type ContactItem = {
   label: string
@@ -13,9 +13,33 @@ export default function ContactCard({ label, value, href, icon }: ContactItem) {
 
   const onPress = () => Linking.openURL(href)
 
+  // determine brand colors based on label/href/icon name
+  const key = (label || "" + href || "" + (icon?.name || "")).toLowerCase()
+
+  let iconColor = "#16A34A" // fallback green
+  let iconBg = "#ECFDF5"
+  let iconBorder = "#DCFCE7"
+
+  if (key.includes("linkedin") || key.includes("logo-linkedin")) {
+    iconColor = "#0A66C2"
+    iconBg = "#E6F2FB"
+    iconBorder = "#D6EAFB"
+  } else if (key.includes("github") || key.includes("logo-github")) {
+    // use a purple accent for GitHub icons
+    iconColor = "#6F42C1"
+    iconBg = "#F3F0FF"
+    iconBorder = "#E9E2FF"
+  } else if (key.includes("mail") || key.includes("gmail") || key.includes("mailto")) {
+    iconColor = "#EA4335"
+    iconBg = "#FFF1F0"
+    iconBorder = "#FFE6E4"
+  }
+
   return (
     <Pressable onPress={onPress} style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-      <View style={styles.iconBox}>{icon ? <IconComp name={icon.name as any} size={32} color="#6366F1" /> : null}</View>
+      <View style={[styles.iconBox, { backgroundColor: iconBg, borderColor: iconBorder }]}>
+        {icon ? <IconComp name={icon.name as any} size={32} color={iconColor} /> : null}
+      </View>
       <View style={styles.content}>
         <Text style={styles.label}>{label}</Text>
         <Text style={styles.value} numberOfLines={1}>
@@ -33,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: "#E5E7EB",
+    borderColor: "#E2E8F0",
     paddingHorizontal: 24,
     paddingVertical: 32,
     gap: 16,
@@ -55,9 +79,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EEF2FF",
+    backgroundColor: "#ECFDF5",
     borderWidth: 1,
-    borderColor: "#E0E7FF",
+    borderColor: "#DCFCE7",
   },
   content: {
     alignItems: "center",
@@ -72,7 +96,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 15,
-    color: "#6B7280",
+    color: "#4B5563",
     fontWeight: "400",
     textAlign: "center",
   },

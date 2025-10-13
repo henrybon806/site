@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   tile: {
     minWidth: 180,
     alignItems: "center",
-    paddingVertical: 14,
+    paddingVertical: 20,
     borderRadius: 12,
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
@@ -38,6 +38,15 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
   },
-  value: { fontSize: 18, fontWeight: "800", color: "#111827" },
-  label: { fontSize: 12, color: "#6B7280", marginTop: 2 },
+  value: {
+    fontSize: 24,
+    fontWeight: "800",
+    color: "#111827",
+  },
+  label: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#6B7280",
+    marginTop: 4,
+  },
 });

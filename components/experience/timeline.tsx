@@ -50,7 +50,6 @@ export default function ExperienceTimeline({ items }: Props) {
 const styles = StyleSheet.create({
   timeline: {
     position: "relative",
-    paddingLeft: 28,
   },
   cardWrap: {
     flexDirection: "row",

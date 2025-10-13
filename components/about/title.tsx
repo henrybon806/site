@@ -11,8 +11,8 @@ export default function AboutTitle() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { alignItems: "center", gap: 8, marginTop: 12 },
-  title: { fontSize: 28, fontWeight: "800", color: "#1F2937" },
+  wrap: { alignItems: "center", gap: 8, marginTop: 12, marginBottom: 25 },
+  title: { fontSize: 40, fontWeight: "800", color: "#1F2937" },
   underline: {
     width: 80,
     height: 4,

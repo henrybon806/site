@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import SectionTitle from "../experience/title";
 import Container from "../layout/container";
 import ProjectGrid from "./projectsgrid";
 
@@ -96,7 +97,7 @@ export default function ProjectsPage() {
     <>
       <View>
         <Container>
-          <Text style={styles.h1}>Projects</Text>
+          <SectionTitle title="Projects" accent="#0891B2" />
           <Text style={styles.lead}>
             A few favorites. Tap the ⓘ on any card to flip for build notes and links.
           </Text>
@@ -136,7 +137,7 @@ export default function ProjectsPage() {
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1, backgroundColor: "#F5F6FB" },
+  page: { flex: 1 },
   h1: { textAlign: "center", fontSize: 28, fontWeight: "800", color: "#111827", marginTop: 8 },
   lead: { textAlign: "center", color: "#6B7280", marginVertical: 8 },
   moreWrap: { alignItems: "center", marginTop: 12, marginBottom: 24 },

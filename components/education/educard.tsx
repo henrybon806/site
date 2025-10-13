@@ -9,22 +9,30 @@ export type EduItem = {
   date: string;
   details?: string[];
   badge?: string;
-  tone?: "blue" | "green" | "purple";
+  type?: "university" | "highschool"; 
 };
 
 const toneMap = {
-  blue: { bg: "#EEF2FF", dot: "#6366F1" },
-  green: { bg: "#ECFDF5", dot: "#10B981" },
-  purple: { bg: "#F5F3FF", dot: "#8B5CF6" },
+  university: { 
+    bg: "#EFF6FF",
+    dot: "#3B82F6",
+    icon: "🎓"
+  },
+  highschool: { 
+    bg: "#F5F3FF", 
+    dot: "#7C3AED", 
+    icon: "📚" 
+  },
 };
 
 export default function EduCard(props: EduItem) {
-  const t = toneMap[props.tone ?? "blue"];
+  const t = toneMap[props.type ?? "university"]; 
 
   return (
     <View style={styles.card}>
       <View style={[styles.iconWrap, { backgroundColor: t.bg, borderColor: t.dot }]}>
-        <View style={[styles.iconDot, { backgroundColor: t.dot }]} />
+        {/* ⭐ REPLACED DOT WITH EMOJI ICON */}
+        <Text style={[styles.iconEmoji, { color: t.dot }]}>{t.icon}</Text>
       </View>
 
       <View style={styles.body}>
@@ -46,7 +54,8 @@ export default function EduCard(props: EduItem) {
         {props.details?.length ? (
           <View style={styles.details}>
             {props.details.map((d, i) => (
-              <Text key={i} style={styles.detailLine}>• {d}</Text>
+              // Changed the bullet to a more modern-looking square/circle for cleaner style
+              <Text key={i} style={styles.detailLine}>• {d}</Text> 
             ))}
           </View>
         ) : null}
@@ -68,6 +77,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E5E7EB",
     padding: 14,
+    flexDirection: 'row',
     gap: 10,
     shadowColor: "#000",
     shadowOpacity: 0.06,
@@ -79,12 +89,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     padding: 6,
+    height: 36,
+    width: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  iconDot: { width: 12, height: 12, borderRadius: 6 },
-  body: { gap: 4 },
-  degree: { fontSize: 15, fontWeight: "700", color: "#111827" },
+  iconEmoji: {
+    fontSize: 20,
+    lineHeight: 24,
+    textAlign: 'center',
+  },
+
+  body: { 
+    flex: 1, 
+    gap: 4 
+  },
+  degree: { fontSize: 16, fontWeight: "700", color: "#111827" },
   school: { fontSize: 14, fontWeight: "600", color: "#1F2937" },
-  schoolLink: { fontSize: 14, fontWeight: "600", color: "#2563EB", textDecorationLine: "underline" },
+  schoolLink: { fontSize: 14, fontWeight: "600", color: "#3B82F6", textDecorationLine: "underline" }, 
   meta: { fontSize: 12, color: "#6B7280", marginTop: 2 },
   details: { marginTop: 6, gap: 2 },
   detailLine: { fontSize: 13, color: "#374151" },

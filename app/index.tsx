@@ -7,7 +7,7 @@ import ProjectsPage from "@/components/projects/projects";
 import SkillsPage from "@/components/skills/skills";
 import { useScrollContext } from "@/context/ScrollContext";
 import React, { useRef } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function App() {
   // Get scroll context functions
@@ -37,12 +37,21 @@ export default function App() {
   return (
     <View style={{ flex: 1 }}>
       <View ref={heroRef}><Hero /></View>
-      <View ref={aboutRef}><AboutPage /></View>
-      <View ref={experienceRef}><ExperiencePage /></View>
-      <View ref={educationRef}><EducationAwardsPage /></View>
-      <View ref={projectsRef}><ProjectsPage /></View>
-      <View ref={skillsRef}><SkillsPage /></View>
-      <View ref={contactRef}><ContactPage /></View>
+      <View ref={aboutRef} style={styles.sectionAbout}><AboutPage /></View>
+      <View ref={experienceRef} style={styles.sectionExperience}><ExperiencePage /></View>
+      <View ref={educationRef} style={styles.sectionEducation}><EducationAwardsPage /></View>
+      <View ref={projectsRef} style={styles.sectionProjects}><ProjectsPage /></View>
+      <View ref={skillsRef} style={styles.sectionSkills}><SkillsPage /></View>
+      <View ref={contactRef} style={styles.sectionContact}><ContactPage /></View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  sectionAbout: { backgroundColor: "#FFFFFF" },
+  sectionExperience: { backgroundColor: "#F9F9F9" }, 
+  sectionEducation: { backgroundColor: "#F6F6F6" }, 
+  sectionProjects: { backgroundColor: "#FBFBFB" },
+  sectionSkills: { backgroundColor: "#F3F3F3" }, 
+  sectionContact: { backgroundColor: "#F6F6F6" },
+});

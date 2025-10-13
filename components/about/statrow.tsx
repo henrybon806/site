@@ -1,13 +1,13 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import StatCard from "./stats";
 
 type Stat = { value: string; label: string };
-type Props = { items: Stat[] };
+type Props = { items: Stat[]; center?: boolean };
 
-export default function StatsRow({ items }: Props) {
+export default function StatsRow({ items, center = false }: Props) {
   return (
-    <View style={styles.row}>
+    <View style={[styles.row, center && styles.centerRow]}>
       {items.map((it, idx) => (
         <StatCard key={idx} value={it.value} label={it.label} />
       ))}
@@ -21,4 +21,5 @@ const styles = StyleSheet.create({
     gap: 12,
     flexWrap: "wrap",
   },
+  centerRow: { justifyContent: "center" },
 });

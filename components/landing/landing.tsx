@@ -18,7 +18,7 @@ const openInNewTab = (url: string) => {
 
 export default function Hero({
   name = "Henry Bonomolo",
-  subtitle = "Software Developer & System Designer",
+  subtitle = "Software Developer & System Designer \n Berkeley, CA",
 }: Props) {
   const { height: windowHeight } = useWindowDimensions();
   const { scrollToSection } = useScrollContext();
@@ -49,18 +49,21 @@ export default function Hero({
 
           <View style={styles.row}>
             <CircleIconButton
-              icon={{ pack: "feather", name: "github" }}
+              icon={{ pack: "ion", name: "logo-github", color: "#6F42C1" }}
               accessibilityLabel="Open GitHub"
+              style={styles.githubBtn}
               onPress={() => openInNewTab("https://github.com/henrybon806")}
             />
             <CircleIconButton
-              icon={{ pack: "feather", name: "linkedin" }}
+              icon={{ pack: "ion", name: "logo-linkedin", color: "#0A66C2" }}
               accessibilityLabel="Open LinkedIn"
+              style={styles.linkedinBtn}
               onPress={() => openInNewTab("https://www.linkedin.com/in/henrybonomolo")}
             />
             <CircleIconButton
-              icon={{ pack: "ion", name: "mail-outline" }}
+              icon={{ pack: "ion", name: "mail-outline", color: "#EA4335" }}
               accessibilityLabel="Send Email"
+              style={styles.emailBtn}
               onPress={() => Linking.openURL("mailto:hbono@berkeley.edu")}
             />
           </View>
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     position: "relative",
     width: "100%",
-    maxWidth: 550,
+    maxWidth: 450,
     paddingVertical: 60,
     paddingHorizontal: 30,
     alignItems: "center",
@@ -98,6 +101,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    
   },
   gradientBackgroundHorizontal: {
     position: "absolute",
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    opacity: 0.85,
+    opacity: 0.4,
   },
   blurOverlay: {
     position: "absolute",
@@ -114,7 +118,6 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: "rgba(255,255,255,0.08)",
-    backdropFilter: "blur(1px)",
   },
   content: {
     width: "100%",
@@ -140,6 +143,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 16,
     marginVertical: 8,
+  },
+  githubBtn: {
+    borderColor: "#E9E2FF",
+    backgroundColor: "#F3F0FF",
+  },
+  linkedinBtn: {
+    borderColor: "#D6EAFB",
+    backgroundColor: "#E6F2FB",
+  },
+  emailBtn: {
+    borderColor: "#FFE6E4",
+    backgroundColor: "#FFF1F0",
   },
 });
 
