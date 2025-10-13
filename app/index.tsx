@@ -2,6 +2,7 @@ import AboutPage from "@/components/about/aboutme";
 import ContactPage from "@/components/contact/getintouch";
 import EducationAwardsPage from "@/components/education/education";
 import ExperiencePage from "@/components/experience/experience";
+import Footer from "@/components/footer/footer";
 import Hero from "@/components/landing/landing";
 import ProjectsPage from "@/components/projects/projects";
 import SkillsPage from "@/components/skills/skills";
@@ -43,6 +44,7 @@ export default function App() {
       <View ref={projectsRef} style={styles.sectionProjects}><ProjectsPage /></View>
       <View ref={skillsRef} style={styles.sectionSkills}><SkillsPage /></View>
       <View ref={contactRef} style={styles.sectionContact}><ContactPage /></View>
+      <Footer />
     </View>
   );
 }

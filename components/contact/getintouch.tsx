@@ -1,5 +1,6 @@
 import React from "react";
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import * as Linking from "expo-linking";
 
 import SectionTitle from "../experience/title";
 import Container from "../layout/container";
@@ -11,7 +12,7 @@ export default function ContactPage() {
     {
       label: "Email",
       value: "henrybonomolo@gmail.com",
-      href: "mailto:henrybonomolo@gmail.com",
+      href: "mailto:hbono@berkeley.edu",
       icon: { pack: "ion", name: "mail-outline" },
     },
     {
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "100%",
-    maxWidth: 880,
+    maxWidth: 1100,
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     paddingVertical: 20,

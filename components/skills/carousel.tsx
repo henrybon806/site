@@ -1,5 +1,7 @@
-import React, { useMemo, useRef, useState } from "react";
-import { View, StyleSheet, ScrollView, NativeScrollEvent, NativeSyntheticEvent, Pressable, Text } from "react-native";
+import React, { useRef, useState } from "react";
+import { View, StyleSheet, ScrollView, NativeScrollEvent, NativeSyntheticEvent, Pressable } from "react-native";
+// Assuming you have Ionicons available through @expo/vector-icons
+import { Ionicons } from "@expo/vector-icons"; 
 import SkillCard, { SkillItem } from "./skillcard";
 
 type Props = { items: SkillItem[] };
@@ -7,19 +9,42 @@ type Props = { items: SkillItem[] };
 export default function SkillCarousel({ items }: Props) {
   const ref = useRef<ScrollView>(null);
   const [index, setIndex] = useState(0);
+  // State to hold the dynamically calculated width of the carousel container
+  const [containerWidth, setContainerWidth] = useState(0); 
+
+  // Handler to capture the container's width, ensuring reliable paging
+  const handleLayout = (e: any) => {
+    setContainerWidth(e.nativeEvent.layout.width);
+  };
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const { contentOffset, layoutMeasurement } = e.nativeEvent;
-    const i = Math.round(contentOffset.x / layoutMeasurement.width);
-    if (i !== index) setIndex(i);
+    if (containerWidth === 0) return;
+    
+    const { contentOffset } = e.nativeEvent;
+    // Calculate the current index using the reliable containerWidth
+    const i = Math.round(contentOffset.x / containerWidth); 
+    
+    // We still limit the index to the visible range of items.
+    if (i !== index && i >= 0 && i < items.length) { 
+        setIndex(i);
+    }
   };
 
   const go = (dir: -1 | 1) => {
-    const next = Math.min(items.length - 1, Math.max(0, index + dir));
-    const width = (ref.current as any)?._layout?.width ?? 0;
-    ref.current?.scrollTo({ x: next * width, animated: true });
+    if (containerWidth === 0) return;
+    
+    // 360-DEGREE SCROLLING LOGIC: Uses modulo operator to wrap the index.
+    let next = (index + dir) % items.length;
+    if (next < 0) {
+      next = items.length - 1; // Wrap from index 0 back to the last index
+    }
+
+    // Use the reliable containerWidth for smooth programmatic scrolling
+    ref.current?.scrollTo({ x: next * containerWidth, animated: true });
     setIndex(next);
   };
+
+  // The controls are always visible and enabled in a 360-degree carousel.
 
   return (
     <View style={styles.wrap}>
@@ -29,58 +54,103 @@ export default function SkillCarousel({ items }: Props) {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={onScroll}
-        scrollEventThrottle={16}
+        scrollEventThrottle={16} // Standard value for smooth scrolling
         style={styles.scroller}
-        onLayout={(e) => ((ref.current as any)._layout = e.nativeEvent.layout)}
+        onLayout={handleLayout} // Use the new layout handler
       >
         {items.map((it, i) => (
-          <View key={i} style={styles.slide}>
+          // Use the calculated width for the slide, crucial for correct paging
+          <View key={i} style={[styles.slide, { width: containerWidth }]}> 
             <SkillCard {...it} />
           </View>
         ))}
       </ScrollView>
 
+      {/* Modernized Controls */}
       <View style={styles.controls}>
-        <Pressable style={[styles.circleBtn, index === 0 && styles.disabled]} onPress={() => go(-1)} disabled={index === 0}>
-          <Text style={styles.arrow}>‹</Text>
+        
+        {/* Previous Button - Always Enabled */}
+        <Pressable 
+            style={styles.circleBtn} 
+            onPress={() => go(-1)} 
+        >
+          <Ionicons name="chevron-back" size={20} color="#1F2937" />
         </Pressable>
-        <Text style={styles.pageText}>{index + 1} of {items.length}</Text>
-        <Pressable style={[styles.circleBtn, index === items.length - 1 && styles.disabled]} onPress={() => go(1)} disabled={index === items.length - 1}>
-          <Text style={styles.arrow}>›</Text>
-        </Pressable>
-      </View>
+        
+        {/* Centralized Pagination Dots */}
+        <View style={styles.dots}>
+          {items.map((_, i) => (
+            <View 
+              key={i} 
+              style={[
+                styles.dot, 
+                i === index && styles.dotActive
+              ]} 
+            />
+          ))}
+        </View>
 
-      <View style={styles.dots}>
-        {items.map((_, i) => (
-          <View key={i} style={[styles.dot, i === index && styles.dotActive]} />
-        ))}
+        {/* Next Button - Always Enabled */}
+        <Pressable 
+            style={styles.circleBtn} 
+            onPress={() => go(1)} 
+        >
+          <Ionicons name="chevron-forward" size={20} color="#1F2937" />
+        </Pressable>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: 10 },
-  scroller: { borderRadius: 14 },
-  slide: { width: "100%" },
+  wrap: { 
+    gap: 10, 
+    marginBottom: 40
+},
+  scroller: { borderRadius: 14, overflow: 'visible' }, 
+  slide: { 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    paddingHorizontal: 10, // Ensure some padding around the card itself
+  },
+
+  // New Control Styles
   controls: {
-    marginTop: 8,
+    paddingHorizontal: 16,
     flexDirection: "row",
-    gap: 14,
+    gap: 10,
     alignItems: "center",
+    justifyContent: "space-between", // Pushes buttons to edges, keeping dots centered
+    marginVertical: 4,
+  },
+  
+  circleBtn: {
+    width: 36, // Reduced size from 44 to 36 (less bulky)
+    height: 36, // Reduced size from 44 to 36
+    borderRadius: 18,
+    backgroundColor: "#FFFFFF", // Clean white background
+    borderWidth: 1, 
+    borderColor: "#E5E7EB", // Subtle border
+    alignItems: "center", 
     justifyContent: "center",
   },
-  circleBtn: {
-    width: 40, height: 40, borderRadius: 20,
-    backgroundColor: "#FFFFFF",
-    borderWidth: 1, borderColor: "#E5E7EB",
-    alignItems: "center", justifyContent: "center",
-    shadowColor: "#000", shadowOpacity: 0.06, shadowRadius: 8, shadowOffset: { width: 0, height: 3 },
+  
+  dots: { 
+    flexDirection: "row", 
+    gap: 8, 
+    justifyContent: "center",
   },
-  disabled: { opacity: 0.5 },
-  arrow: { fontSize: 20, color: "#374151", marginTop: -1 },
-  pageText: { fontSize: 13, color: "#6B7280" },
-  dots: { flexDirection: "row", gap: 6, justifyContent: "center", marginTop: 4 },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#D1D5DB" },
-  dotActive: { backgroundColor: "#7C9CF5" },
+  
+  dot: { 
+    width: 8, 
+    height: 8, 
+    borderRadius: 4, 
+    backgroundColor: "#D1D5DB", // Light grey for inactive
+  },
+  dotActive: { 
+    width: 8, 
+    height: 8, 
+    borderRadius: 4, 
+    backgroundColor: "#1F2937", // Dark black/grey for active
+  },
 });

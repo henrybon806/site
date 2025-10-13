@@ -11,8 +11,6 @@ type Props = {
 
 export default function CircleIconButton({ icon, onPress, style, accessibilityLabel }: Props) {
   const Comp = icon.pack === "ion" ? Ionicons : Feather;
-  // If caller didn't pass a style but did pass a brand icon color, provide a matching
-  // subtle background and border tint so the circle matches the provider branding.
   const colorKey = (icon.color || "").toLowerCase();
   let derivedStyle = undefined as any;
 

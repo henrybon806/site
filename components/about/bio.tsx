@@ -58,6 +58,5 @@ const styles = StyleSheet.create({
   centerWrap: {
     alignSelf: "center",
     width: "100%",
-    paddingHorizontal: 20, 
   },
 });

@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
-    backgroundColor: "#EEF2FF", // Lighter indigo background
+    backgroundColor: "#EEF2FF",
     borderWidth: 1,
-    borderColor: "#C7D2FE", // Indigo border
+    borderColor: "#C7D2FE",
   },
-  label: { fontSize: 12, color: "#4F46E5", fontWeight: "600" }, // Indigo text, semi-bold
+  label: { fontSize: 12, color: "#4F46E5", fontWeight: "600" },
 });

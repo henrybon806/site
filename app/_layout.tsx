@@ -27,7 +27,7 @@ function AppContent() {
       >
         <LifeBackground 
           cellSize={16}
-          pathColor="#22d3ee"
+          pathColor="#0c4a6e"
           visitedColor="#0c4a6e"
           wallColor="#1e3a5f"
           bgColor="#0b1020"

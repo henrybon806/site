@@ -9,18 +9,71 @@ import {
     Text,
     View,
 } from "react-native";
-import Tag from "./tag";
 
+type TagProps = {
+  text: string;
+  color: {
+    text: string;
+    bg: string;
+    border: string;
+  };
+};
+
+function Tag({ text, color }: TagProps) {
+  return (
+    <View style={[tagStyles.tag, { backgroundColor: color.bg, borderColor: color.border }]}>
+      <Text style={[tagStyles.tagText, { color: color.text }]}>{text}</Text>
+    </View>
+  );
+}
+
+const tagStyles = StyleSheet.create({
+  tag: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  tagText: {
+    fontSize: 11,
+    fontWeight: "600",
+  },
+});
+
+const TAG_COLORS_MAP = {
+  react: { text: "#0369A1", bg: "#E0F2FE", border: "#7DD3FC" }, // Sky Blue
+  typescript: { text: "#3178C6", bg: "#EAF3FF", border: "#A8CCF9" }, // Darker Blue
+  javascript: { text: "#92400E", bg: "#FFF7ED", border: "#FED7AA" }, // Orange/Brown for JS
+  python: { text: "#10B981", bg: "#D1FAE5", border: "#6EE7B7" }, // Green
+
+  api: { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" }, // Teal
+  nodejs: { text: "#059669", bg: "#D1FAE5", border: "#6EE7B7" }, // Dark Green
+  mongodb: { text: "#104000", bg: "#EBFBDE", border: "#B4E897" }, // Lime Green
+  firebase: { text: "#F5820D", bg: "#FFF4E8", border: "#FFD9A8" }, // Orange
+
+  css: { text: "#3730A3", bg: "#EEF2FF", border: "#C7D2FE" }, // Indigo
+  html: { text: "#EF4444", bg: "#FEE2E2", border: "#FCA5A5" }, // Red
+  testing: { text: "#334155", bg: "#F1F5F9", border: "#94A3B8" }, // Slate (Neutral)
+};
+
+const DEFAULT_TAG_COLOR = { text: "#4B5563", bg: "#F3F4F6", border: "#D1D5DB" }; // Gray
+
+const getTagColor = (text: string) => {
+  const key = text.toLowerCase().trim();
+  return (TAG_COLORS_MAP as any)[key] || DEFAULT_TAG_COLOR;
+};
+
+// --- PROJECT CARD COMPONENT ---
 export type ProjectCardData = {
   title: string;
   year: string;
-  image: any;            // ImageSourcePropType
+  image: any;
   summary: string;
   tags?: string[];
   linkText?: string;
   linkUrl?: string;
-  details?: string[];    // back side
-  learnings?: string[];  // back side
+  details?: string[];  
+  learnings?: string[];
 };
 
 export default function ProjectCard({ data }: { data: ProjectCardData }) {
@@ -59,7 +112,8 @@ export default function ProjectCard({ data }: { data: ProjectCardData }) {
           <View style={styles.bottomContent}>
             {!!data.tags?.length && (
               <View style={styles.tags}>
-                {data.tags.map((t, i) => <Tag key={i} text={t} />)}
+                {/* NOW uses the tag text (t) to look up the color type */}
+                {data.tags.map((t, i) => <Tag key={i} text={t} color={getTagColor(t)} />)}
               </View>
             )}
 
@@ -73,7 +127,7 @@ export default function ProjectCard({ data }: { data: ProjectCardData }) {
         </View>
 
         <Pressable style={styles.infoBtn} onPress={() => flipTo(true)} accessibilityLabel="Flip for more">
-          <Ionicons name="information-circle-outline" size={22} color="#4B5563" />
+          <Ionicons name="swap-horizontal-outline" size={18} color="#4B5563" />
         </Pressable>
       </Animated.View>
 
@@ -105,7 +159,7 @@ export default function ProjectCard({ data }: { data: ProjectCardData }) {
         </View>
 
         <Pressable style={styles.infoBtn} onPress={() => flipTo(false)} accessibilityLabel="Flip back">
-          <Ionicons name="close-circle-outline" size={22} color="#4B5563" />
+          <Ionicons name="swap-horizontal-outline" size={18} color="#4B5563" />
         </Pressable>
       </Animated.View>
     </View>
@@ -126,15 +180,20 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     height: '100%',
 
-    // 3D flip niceties (RN web understands these enough)
     backfaceVisibility: "hidden" as any,
   },
   front: { position: "relative", height: '100%' },
   back:  { position: "absolute", top: 8, left: 8, right: 8, bottom: 8 },
 
-  img: { width: "100%", height: 170, backgroundColor: "#F3F4F6" },
+  img: { 
+    width: "100%", 
+    height: 170, 
+    backgroundColor: "#F3F4F6",
+    objectFit: "cover" as any,  // Ensure images display properly at different widths
+  },
   content: { 
     padding: 14, 
+    paddingHorizontal: 16,  // Slightly more horizontal padding for better readability on wider cards
     flex: 1,
     display: 'flex', 
     flexDirection: 'column',
@@ -166,10 +225,13 @@ const styles = StyleSheet.create({
 
   infoBtn: {
     position: "absolute", top: 10, right: 10,
-    width: 34, height: 34, borderRadius: 17,
+    width: 32,
+    height: 32, 
+    borderRadius: 16,
     backgroundColor: "#FFFFFF",
     borderWidth: 1, borderColor: "#E5E7EB",
-    alignItems: "center", justifyContent: "center",
+    alignItems: "center", 
+    justifyContent: "center",
     shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 6, shadowOffset: { width: 0, height: 2 },
   },
 

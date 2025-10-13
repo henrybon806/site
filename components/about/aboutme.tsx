@@ -62,7 +62,7 @@ export default function AboutPage() {
 }
 
 const styles = StyleSheet.create({
-  hero: { marginTop: 24, gap: 60, alignItems: "center", paddingHorizontal: 40 },
+  hero: { marginTop: 24, gap: 60, alignItems: "center", paddingHorizontal: 30 },
   heroRow: { flexDirection: "row", justifyContent: "space-between" },
   heroCol: { flexDirection: "column", alignItems: "center" },
 

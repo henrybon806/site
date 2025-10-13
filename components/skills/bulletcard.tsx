@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 15, fontWeight: "800", color: "#111827" },
   list: { gap: 8, marginTop: 4 },
   row: { flexDirection: "row", gap: 10, alignItems: "center" },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#60A5FA" },
+  // Subtle dot color change: from bright blue (#60A5FA) to a deep, neutral gray
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#4B5563" }, 
   text: { fontSize: 14, color: "#374151" },
 });

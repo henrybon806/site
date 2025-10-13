@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import SectionTitle from "../experience/title";
 import Container from "../layout/container";
 import ProjectGrid from "./projectsgrid";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function ProjectsPage() {
   const [showAll, setShowAll] = useState(false);
@@ -99,7 +100,7 @@ export default function ProjectsPage() {
         <Container>
           <SectionTitle title="Projects" accent="#0891B2" />
           <Text style={styles.lead}>
-            A few favorites. Tap the ⓘ on any card to flip for build notes and links.
+            A few favorites. Tap the <Ionicons name="swap-horizontal-outline" size={12} color="#4B5563" /> on any card to flip for build notes and links.
           </Text>
 
           <ProjectGrid 

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import SectionTitle from "../experience/title";
 import Container from "../layout/container";
 import AwardCard, { AwardItem } from "./award";
@@ -100,7 +100,7 @@ export default function EducationAwardsPage() {
           {isWide && (
             <View style={styles.metricCol}>
               <SectionLabel text="Career Metrics" />
-              <MetricTiles items={metrics} />
+              <MetricTiles items={metrics} inScrollView={true} />
             </View>
           )}
         </View>
@@ -109,7 +109,7 @@ export default function EducationAwardsPage() {
         {!isWide && (
           <View style={styles.metricsStack}>
             <SectionLabel text="Career Metrics" />
-            <MetricTiles items={metrics} />
+            <MetricTiles items={metrics} inScrollView={false} /> {/* Explicitly set to false for clarity */}
           </View>
         )}
       </Container>

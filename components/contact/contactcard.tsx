@@ -1,5 +1,6 @@
 import { Feather, Ionicons } from "@expo/vector-icons"
-import { Linking, Pressable, StyleSheet, Text, View } from "react-native"
+import { Pressable, StyleSheet, Text, View } from "react-native"
+import * as Linking from "expo-linking";
 
 export type ContactItem = {
   label: string
@@ -11,12 +12,20 @@ export type ContactItem = {
 export default function ContactCard({ label, value, href, icon }: ContactItem) {
   const IconComp = icon?.pack === "feather" ? Feather : Ionicons
 
-  const onPress = () => Linking.openURL(href)
+  const openInNewTab = (url: string) => {
+    if (typeof window !== 'undefined' && window.open && !url.startsWith('mailto:')) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      Linking.openURL(url);
+    }
+  };
 
-  // determine brand colors based on label/href/icon name
+  const onPress = () => openInNewTab(href)
+  
+
   const key = (label || "" + href || "" + (icon?.name || "")).toLowerCase()
 
-  let iconColor = "#16A34A" // fallback green
+  let iconColor = "#16A34A"
   let iconBg = "#ECFDF5"
   let iconBorder = "#DCFCE7"
 
@@ -25,7 +34,6 @@ export default function ContactCard({ label, value, href, icon }: ContactItem) {
     iconBg = "#E6F2FB"
     iconBorder = "#D6EAFB"
   } else if (key.includes("github") || key.includes("logo-github")) {
-    // use a purple accent for GitHub icons
     iconColor = "#6F42C1"
     iconBg = "#F3F0FF"
     iconBorder = "#E9E2FF"
@@ -66,8 +74,11 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     shadowOffset: { width: 0, height: 4 },
     elevation: 4,
-    flex: 1,
-    minWidth: 0,
+    flexGrow: 1,
+    flexShrink: 0, 
+    flexBasis: 300, 
+    minWidth: 180,
+    maxWidth: 275,
   },
   pressed: {
     transform: [{ scale: 0.98 }],
