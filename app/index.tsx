@@ -42,6 +42,7 @@ export default function App() {
         <title>Henry Bonomolo</title>
       </Head>
       <View ref={heroRef}><Hero /></View>
+      <View ref={aboutRef} style={styles.sectionAbout}><AboutPage /></View>
       <View ref={experienceRef} style={styles.sectionExperience}><ExperiencePage /></View>
       <View ref={educationRef} style={styles.sectionEducation}><EducationAwardsPage /></View>
       <View ref={projectsRef} style={styles.sectionProjects}><ProjectsPage /></View>
