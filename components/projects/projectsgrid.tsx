@@ -59,7 +59,7 @@ export default function ProjectGrid({ items, featured = true }: { items: Item[],
 const styles = StyleSheet.create({
   container: { 
     marginTop: 12,
-    marginBottom: 24,
+    marginBottom: 10,
     width: '100%',
     alignItems: 'center',
   },

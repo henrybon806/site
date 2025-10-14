@@ -25,7 +25,7 @@ export default function SkillsPage() {
 
         {/* Lead-in paragraph */}
         <View style={styles.leadWrap}>
-          <TextCard text="I believe in learning through doing and teaching. My expertise comes from real projects (ARES, Spike Inclusive, FitRealm), research/internships, and mentoring communities—from FTC robotics to Berkeley courses." />
+          <TextCard text="I learn best by building and teaching. My experience comes from real projects like ARES, Spike Inclusive, and FitRealm, along with research, internships, and mentoring in communities ranging from FTC robotics to Berkeley teams." />        
         </View>
 
         {/* 2-col on wide, stacked on narrow */}
@@ -37,44 +37,73 @@ export default function SkillsPage() {
                   title: "Teaching & Leadership",
                   sub: "3+ years",
                   blurb:
-                    "Led 40+ member teaching teams and mentored 800+ students. Designed tools and workflows that scale support.",
-                  bullets: ["Head/UGSI for Berkeley courses", "Curriculum & tooling", "Mentoring & project coaching"],
+                    "Led robotics and teaching teams while mentoring hundreds of students. Built tools and workflows to make learning smoother and more scalable.",
+                  bullets: [
+                    "Mentor & coach across FTC and Berkeley orgs",
+                    "Curriculum design & technical guidance",
+                    "Data-driven teaching tools (ARES)"
+                  ],
                   tone: "indigo",
                 },
                 {
                   title: "Full-Stack & DevOps",
                   sub: "TypeScript • React • Node",
-                  blurb: "Ship reproducible web/mobile apps with CI, caching, and observability.",
-                  bullets: ["Expo/React Native", "Next/Expo Router", "Supabase/Postgres, REST/WS", "GitHub Actions"],
+                  blurb:
+                    "Develop and deploy reproducible systems with strong data layers and clean CI/CD pipelines.",
+                  bullets: [
+                    "Expo / React Native apps",
+                    "Next.js & Expo Router",
+                    "Supabase / Postgres APIs",
+                    "GitHub Actions automation"
+                  ],
                   tone: "blue",
                 },
                 {
-                  title: "Data/ML & RL",
+                  title: "Data, ML & RL",
                   sub: "Python • NumPy • PyTorch (basics)",
-                  blurb: "From coursework (CS188) to practical pipelines and analytics.",
-                  bullets: ["Feature-based RL projects", "Data viz & metrics", "ETL for Solar Data API"],
+                  blurb:
+                    "Build analytics pipelines and experiment with reinforcement learning and decision-making systems.",
+                  bullets: [
+                    "Feature-based RL from CS188 projects",
+                    "ARES data metrics & visualization",
+                    "Solar irradiance API ETL pipeline"
+                  ],
                   tone: "teal",
                 },
                 {
                   title: "Robotics & EDA",
-                  sub: "FTC • GPU/EDA experiments",
-                  blurb: "Built ARES (public analytics) and explored GPU-accelerated heuristics for EDA.",
-                  bullets: ["ARES Discord + web", "OPR/ratings pipelines", "CUDA/GPU curiosity projects"],
+                  sub: "FTC • GPU-accelerated algorithms",
+                  blurb:
+                    "Created autonomous robotics systems and explored GPU heuristics for hardware design automation.",
+                  bullets: [
+                    "ARES web & Discord analytics",
+                    "Autonomous pathfinding / OPR analysis",
+                    "CUDA / GPU research experiments"
+                  ],
                   tone: "purple",
                 },
                 {
                   title: "Mobile & BLE",
-                  sub: "iOS • Android • BLE",
+                  sub: "iOS • Android • Bluetooth LE",
                   blurb:
-                    "Spike Inclusive iPad app for accessible robotics education; Android RMSSD app for research.",
-                  bullets: ["Expo/Native Modules (as needed)", "BLE flows", "Store/Permissions"],
+                    "Build native-quality mobile apps for education and research, integrating sensors and BLE devices.",
+                  bullets: [
+                    "Spike Inclusive iPad app",
+                    "Android RMSSD stress-monitor app",
+                    "BLE connectivity & permissions"
+                  ],
                   tone: "rose",
                 },
                 {
                   title: "Product & UX",
-                  sub: "From idea → shipped",
-                  blurb: "Tight loops: problems → prototypes → production. Clear docs and APIs.",
-                  bullets: ["Design systems & theming", "A11y basics", "Docs/readmes/examples"],
+                  sub: "Idea → Prototype → Launch",
+                  blurb:
+                    "Care about clarity and momentum: ship fast, refine fast, and make tools people actually use.",
+                  bullets: [
+                    "Design systems & theming consistency",
+                    "Accessible, documented interfaces",
+                    "Rapid iteration & user testing"
+                  ],
                   tone: "amber",
                 },
               ]}
@@ -85,10 +114,10 @@ export default function SkillsPage() {
             <BulletCard
               title="Key Achievements"
               bullets={[
-                "800+ students impacted across teaching and tools",
-                "Built ARES (FTC analytics platform + Discord bot)",
-                "Spike Inclusive iPad app deployed in schools",
-                "Solar Data API + RMSSD research app",
+                "Built ARES, a public FTC analytics platform and Discord bot used by robotics teams",
+                "Created Spike Inclusive, an iPad app for accessible LEGO Spike programming in classrooms",
+                "Developed a Solar Data API pipeline for Energesque",
+                "Built an Android RMSSD heart-rate app for stress research at the University of Arizona",
               ]}
             />
             <View style={styles.cardSpacer} />

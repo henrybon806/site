@@ -18,7 +18,7 @@ const Footer = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
+    paddingVertical: 25,
     alignItems: 'center',
     borderTopWidth: 1,
     gap: 4,

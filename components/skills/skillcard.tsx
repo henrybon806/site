@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export type SkillItem = {
   title: string;
@@ -7,6 +7,7 @@ export type SkillItem = {
   blurb: string;
   bullets?: string[];
   tone?: "indigo" | "blue" | "teal" | "purple" | "rose" | "amber";
+  icon?: string;
 };
 
 // Added 'text' color for the icon/emoji
@@ -19,11 +20,57 @@ const toneMap = {
   amber:  { bg: "#FFFBEB", dot: "#F59E0B", text: "#D97706" },
 };
 
-export default function SkillCard({ title, sub, blurb, bullets = [], tone = "indigo" }: SkillItem) {
+export default function SkillCard({ title, sub, blurb, bullets = [], tone = "indigo", icon }: SkillItem) {
   const t = toneMap[tone];
   
-  // Using a universal symbol as the placeholder "emoji"
-  const iconSymbol = "🌟"; 
+  // Different symbols for different skill categories
+  const getDefaultIcon = (title: string, tone: string) => {
+    const titleLower = title.toLowerCase();
+    
+    // Programming/Technical
+    if (titleLower.includes('robotics') || titleLower.includes('coding') || titleLower.includes('development')) return "💻";
+    if (titleLower.includes('web') || titleLower.includes('frontend') || titleLower.includes('backend')) return "🌐";
+    if (titleLower.includes('mobile') || titleLower.includes('app')) return "📱";
+    if (titleLower.includes('database') || titleLower.includes('data')) return "🗄️";
+    if (titleLower.includes('cloud') || titleLower.includes('aws') || titleLower.includes('azure')) return "☁️";
+    if (titleLower.includes('api') || titleLower.includes('service')) return "🔗";
+    
+    // Design/Creative
+    if (titleLower.includes('design') || titleLower.includes('ui') || titleLower.includes('ux')) return "🎨";
+    if (titleLower.includes('creative') || titleLower.includes('visual')) return "✨";
+    
+    // Management/Leadership
+    if (titleLower.includes('leadership') || titleLower.includes('management')) return "👥";
+    if (titleLower.includes('project') || titleLower.includes('planning')) return "📋";
+    if (titleLower.includes('strategy') || titleLower.includes('business')) return "📈";
+    
+    // Communication/Soft Skills
+    if (titleLower.includes('communication') || titleLower.includes('presentation')) return "💬";
+    if (titleLower.includes('collaboration') || titleLower.includes('teamwork')) return "🤝";
+    if (titleLower.includes('problem') || titleLower.includes('analytical')) return "🧩";
+    
+    // Security/Testing
+    if (titleLower.includes('security') || titleLower.includes('testing')) return "🔒";
+    if (titleLower.includes('devops') || titleLower.includes('deployment')) return "⚙️";
+    
+    // Learning/Research
+    if (titleLower.includes('learning') || titleLower.includes('research')) return "📚";
+    if (titleLower.includes('innovation') || titleLower.includes('creative')) return "💡";
+    
+    // Default icons by tone
+    const toneIcons = {
+      indigo: "💎",
+      blue: "🔵", 
+      teal: "🟢",
+      purple: "🟣",
+      rose: "�",
+      amber: "⚡"
+    };
+    
+    return toneIcons[tone as keyof typeof toneIcons] || "⭐";
+  };
+  
+  const iconSymbol = icon || getDefaultIcon(title, tone); 
 
   return (
     // Enforced minHeight for uniform card size

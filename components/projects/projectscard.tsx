@@ -41,19 +41,63 @@ const tagStyles = StyleSheet.create({
 });
 
 const TAG_COLORS_MAP = {
-  react: { text: "#0369A1", bg: "#E0F2FE", border: "#7DD3FC" }, // Sky Blue
-  typescript: { text: "#3178C6", bg: "#EAF3FF", border: "#A8CCF9" }, // Darker Blue
-  javascript: { text: "#92400E", bg: "#FFF7ED", border: "#FED7AA" }, // Orange/Brown for JS
-  python: { text: "#10B981", bg: "#D1FAE5", border: "#6EE7B7" }, // Green
+  // Core Languages
+  typescript: { text: "#3178C6", bg: "#EAF3FF", border: "#A8CCF9" },
+  javascript: { text: "#92400E", bg: "#FFF7ED", border: "#FED7AA" },
+  python: { text: "#10B981", bg: "#D1FAE5", border: "#6EE7B7" },
+  java: { text: "#B45309", bg: "#FEF3C7", border: "#FCD34D" },
+  kotlin: { text: "#7C3AED", bg: "#F3E8FF", border: "#C4B5FD" },
 
-  api: { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" }, // Teal
-  nodejs: { text: "#059669", bg: "#D1FAE5", border: "#6EE7B7" }, // Dark Green
-  mongodb: { text: "#104000", bg: "#EBFBDE", border: "#B4E897" }, // Lime Green
-  firebase: { text: "#F5820D", bg: "#FFF4E8", border: "#FFD9A8" }, // Orange
+  // Frameworks & Libraries
+  react: { text: "#0369A1", bg: "#E0F2FE", border: "#7DD3FC" },
+  expo: { text: "#4B5563", bg: "#F3F4F6", border: "#D1D5DB" },
+  "react native": { text: "#2563EB", bg: "#DBEAFE", border: "#93C5FD" },
+  node: { text: "#059669", bg: "#D1FAE5", border: "#6EE7B7" },
+  express: { text: "#374151", bg: "#F3F4F6", border: "#D1D5DB" },
 
-  css: { text: "#3730A3", bg: "#EEF2FF", border: "#C7D2FE" }, // Indigo
-  html: { text: "#EF4444", bg: "#FEE2E2", border: "#FCA5A5" }, // Red
-  testing: { text: "#334155", bg: "#F1F5F9", border: "#94A3B8" }, // Slate (Neutral)
+  // Databases & APIs
+  supabase: { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" },
+  postgres: { text: "#1E40AF", bg: "#E0E7FF", border: "#93C5FD" },
+  api: { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" },
+  rest: { text: "#0369A1", bg: "#E0F2FE", border: "#7DD3FC" },
+  etl: { text: "#4B5563", bg: "#F3F4F6", border: "#D1D5DB" },
+
+  // Cloud, CI/CD, Infra
+  "github actions": { text: "#4338CA", bg: "#E0E7FF", border: "#A5B4FC" },
+  "ci/cd": { text: "#7C3AED", bg: "#F3E8FF", border: "#C4B5FD" },
+  cloud: { text: "#155E75", bg: "#ECFEFF", border: "#67E8F9" },
+
+  // Data Science & AI
+  rl: { text: "#2563EB", bg: "#DBEAFE", border: "#93C5FD" },
+  "data engineering": { text: "#1D4ED8", bg: "#DBEAFE", border: "#93C5FD" },
+  "data viz": { text: "#7E22CE", bg: "#FAE8FF", border: "#E9D5FF" },
+  "ml": { text: "#7E22CE", bg: "#FAE8FF", border: "#E9D5FF" },
+  "pytorch": { text: "#DC2626", bg: "#FEE2E2", border: "#FCA5A5" },
+  "numpy": { text: "#0369A1", bg: "#E0F2FE", border: "#7DD3FC" },
+
+  // Robotics & Hardware
+  robotics: { text: "#1E3A8A", bg: "#DBEAFE", border: "#93C5FD" },
+  ble: { text: "#0E7490", bg: "#ECFEFF", border: "#67E8F9" },
+  "gpu": { text: "#2563EB", bg: "#DBEAFE", border: "#93C5FD" },
+  "eda": { text: "#334155", bg: "#F1F5F9", border: "#94A3B8" },
+
+  // Tools & Platforms
+  discord: { text: "#6366F1", bg: "#E0E7FF", border: "#A5B4FC" },
+  "expo router": { text: "#4B5563", bg: "#F3F4F6", border: "#D1D5DB" },
+  "postgrest": { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" },
+  supabasecli: { text: "#0F766E", bg: "#F0FDFA", border: "#5EEAD4" },
+
+  // UI / Product
+  ux: { text: "#B91C1C", bg: "#FEE2E2", border: "#FCA5A5" },
+  a11y: { text: "#B45309", bg: "#FEF3C7", border: "#FCD34D" },
+  "design systems": { text: "#BE185D", bg: "#FCE7F3", border: "#F9A8D4" },
+
+  // Misc / General
+  research: { text: "#0E7490", bg: "#ECFEFF", border: "#67E8F9" },
+  education: { text: "#15803D", bg: "#DCFCE7", border: "#86EFAC" },
+  algorithms: { text: "#334155", bg: "#F1F5F9", border: "#94A3B8" },
+  "data structures": { text: "#475569", bg: "#F1F5F9", border: "#CBD5E1" },
+  "signal processing": { text: "#78350F", bg: "#FEF3C7", border: "#FCD34D" },
 };
 
 const DEFAULT_TAG_COLOR = { text: "#4B5563", bg: "#F3F4F6", border: "#D1D5DB" }; // Gray

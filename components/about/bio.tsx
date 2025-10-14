@@ -11,30 +11,15 @@ export default function BioParagraphs({ center = false }: Props) {
         
         {/* Paragraph 1 */}
         <Text style={[styles.p, center && styles.centerP]}>
-        I’m Henry Bonomolo, a UC Berkeley Computer Science undergrad (CDSS, ’27) who loves
-        turning messy, real-world problems into tools people actually use. I’ve built systems
-        across education and robotics, like <Text style={{fontWeight: "700"}}>ARES</Text>, a public FTC analytics
-        platform + Discord bot, and <Text style={{fontWeight: "700"}}>Spike Inclusive</Text>, an iPad app that helps
-        students program LEGO Spike robots in more accessible ways. I get a kick out of shipping
-        things that help teams learn faster and make better decisions.
+        Hi! I’m Henry Bonomolo, a UC Berkeley Computer Science undergrad who likes building systems that solve real problems. Most of my work sits where education, data, and robotics overlap. I built ARES (analytical robotics evaluation system), a public FTC analytics platform and Discord bot used by hundreds of robotics teams, and Spike Inclusive, an iPad app that helps students program LEGO Spike robots in more accessible ways. What keeps me hooked is turning chaotic ideas into things that actually make a difference for teams on the ground.
         </Text>
 
-        {/* Paragraph 2 */}
         <Text style={[styles.p, center && styles.centerP]}>
-        Around Berkeley I split time between coursework (CS61A/B, CS70, CS188, Math 54), Mobile
-        Developers of Berkeley, and research-y side quests. I’ve worked on a Solar Data API
-        pipeline at Energesque, built an Android + RMSSD heartbeat app for stress research at the
-        University of Arizona, and I regularly dive into reinforcement learning, cryptography, and
-        systems. I’ve led FTC robotics teams and mentor others, ARES grew straight out of that
-        community’s needs.
+        I split my time between building, mentoring, and research-heavy side projects. At Energesque I designed a solar data API pipeline, and at the University of Arizona I helped build an Android app that measures heart activity for stress research. I still work closely with the FTC community I came from (ARES started as a tool I wished I had while leading and mentoring robotics teams).
         </Text>
 
-        {/* Paragraph 3 */}
         <Text style={[styles.p, center && styles.centerP]}>
-        Lately I’m exploring GPU-accelerated EDA heuristics, practical ML for decision-making, and
-        clean end-to-end product seams, from data to UI. I value clear APIs, reproducibility, and
-        shipping over slideware. If it helps someone build, learn, or compete in the real world,
-        I’m in.
+        Lately I’ve been diving into GPU-accelerated design automation, machine learning for decision-making, and the art of keeping data pipelines and interfaces simple enough to trust. I care about clarity, reproducibility, and actually shipping things. If it helps people build, learn, or compete better, that’s where I want to be.
         </Text>
       </View>
     </View>

@@ -16,62 +16,75 @@ export default function EducationAwardsPage() {
       school: "University of California, Berkeley",
       link: "https://cdss.berkeley.edu/",
       location: "Berkeley, CA",
-      date: "Aug 2024 – May 2027",
-      details: ["Courses: CS61A/B, CS70, CS188, Math 54, UGBA 10X, ENVDES 5"],
-      badge: "Undergraduate, CS ’27",
+      date: "Aug 2024 – Present",
+      details: [
+        "Studying computing, data science, and systems design through Berkeley’s College of Computing, Data Science, and Society.",
+        "Projects and research across AI, reinforcement learning, and distributed systems.",
+        "Active in Mobile Developers of Berkeley and personal research projects exploring GPU-accelerated algorithms and real-time data tools."
+      ],
+      badge: "Undergraduate",
       type: "university"
     },
     {
       degree: "High School Diploma",
       school: "Catalina Foothills High School",
+      link: "https://cfhs.cfsd16.org",
       location: "Tucson, AZ",
       date: "Aug 2020 – May 2024",
-      details: ["FTC robotics president & lead programmer", "Multiple state championships (team)"],
-      badge: "Outstanding Senior",
+      details: [
+        "President and Lead Programmer of the state-champion FIRST Tech Challenge robotics team.",
+        "Developed award-winning autonomous systems and led a 40-member team through multi-season competitions.",
+        "Began ARES, a public analytics platform for FTC teams, inspired by the community’s data needs."
+      ],
+      badge: "Outstanding Senior Recognition",
       type: "highschool"
     },
   ];
 
   const awards: AwardItem[] = [
-    {
-      title: "Java Certified Foundations Associate",
-      org: "ORACLE",
-      date: "2024",
-      description: "Validated proficiency in fundamental Java programming concepts, data types, control flow, and object-oriented principles.",
-      link: "https://www.oracle.com/",
-      type: "technical",
-    },
-    {
-      title: "Mentor and Coach Award",
-      org: "FIRST LEGO League",
-      date: "2023",
-      description: "Recognized for commitment to Core Values and exceptional leadership in guiding a K-12 robotics team to competition success.",
-      link: "https://www.firstinspires.org/robotics/fll",
-      type: "leadership",
-    },
-    {
-      title: "Gold Seal of Biliteracy: Spanish",
-      org: "State of Arizona",
-      date: "2024",
-      description: "Awarded by the state for demonstrating proficiency in English and Spanish, meeting rigorous academic criteria.",
-      link: "https://az.gov",
-      type: "language",
-    },
-    {
-      title: "National Hispanic Scholar & AP Scholar Award with Distinction",
-      org: "Advanced Placement",
-      date: "2022-2024",
-      description: "Dual recognition for high academic performance on AP exams and standing as a top-ranked Hispanic student nationwide.",
-      link: "https://www.collegeboard.org/",
-      type: "scholarship", 
-    },
+  {
+    title: "Java Certified Foundations Associate",
+    org: "Oracle",
+    date: "2024",
+    description:
+      "Earned certification demonstrating practical understanding of Java syntax, control structures, data types, and object-oriented design.",
+    link: "https://www.oracle.com/",
+    type: "technical",
+  },
+  {
+    title: "Mentor & Coach Award",
+    org: "FIRST LEGO League",
+    date: "2023",
+    description:
+      "Recognized for leading and mentoring a K–12 robotics team with an emphasis on collaboration, inclusion, and hands-on engineering success.",
+    link: "https://www.firstinspires.org/robotics/fll",
+    type: "leadership",
+  },
+  {
+    title: "Gold Seal of Biliteracy — Spanish",
+    org: "State of Arizona",
+    date: "2024",
+    description:
+      "Awarded for advanced proficiency in Spanish and English through coursework and state-level fluency assessments.",
+    link: "https://az.gov",
+    type: "language",
+  },
+  {
+    title: "National Hispanic Scholar & AP Scholar with Distinction",
+    org: "College Board",
+    date: "2022–2024",
+    description:
+      "Honored for top national academic performance and consistently high scores across multiple Advanced Placement exams.",
+    link: "https://www.collegeboard.org/",
+    type: "scholarship",
+  },
   ];
 
   const metrics = [
-    { value: "800+", label: "Students Impacted" },
-    { value: "3.9x", label: "Project Scale (ARES, est.)" },
-    { value: "10+", label: "Courses & Labs" },
-    { value: "4+", label: "Teams Led" },
+    { value: "500+", label: "Students Reached" },
+    { value: "30K+", label: "Matches Analyzed (ARES)" },
+    { value: "10+", label: "Projects Built" },
+    { value: "5", label: "Teams Led" },
   ];
 
   return (
