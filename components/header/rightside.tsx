@@ -2,7 +2,7 @@ import { useScrollContext } from "@/context/ScrollContext";
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Linking, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { MobileDropdown } from "./MobileDropdown";
 
 type Item = { label: string; href: string };
@@ -34,7 +34,6 @@ export default function HeaderRight() {
 
   const isMainPage = pathname === "/";
   
-  // Update button position when it becomes visible or window resizes
   useEffect(() => {
     if (!isSmallScreen) return;
     
@@ -119,7 +118,7 @@ export default function HeaderRight() {
         </Pressable>
       );
     }
-    // On other pages, only Resume navigates; others do nothing
+
     if (item.label === "Resume") {
       return (
         <Pressable
@@ -130,8 +129,7 @@ export default function HeaderRight() {
             pressed && styles.pressed
           ]}
           onPress={() => { 
-            window.location.href = item.href;
-            if (inModal) setModalVisible(false);
+            Linking.openURL("https://resume.henrybonomolo.com")
           }}
           accessibilityRole="link"
           accessibilityLabel={`Go to ${item.label}`}

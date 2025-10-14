@@ -9,6 +9,7 @@ import SkillsPage from "@/components/skills/skills";
 import { useScrollContext } from "@/context/ScrollContext";
 import React, { useRef } from "react";
 import { StyleSheet, View } from "react-native";
+import Head from "expo-router/head";
 
 export default function App() {
   // Get scroll context functions
@@ -37,8 +38,10 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }}>
+      <Head>
+        <title>Henry Bonomolo</title>
+      </Head>
       <View ref={heroRef}><Hero /></View>
-      <View ref={aboutRef} style={styles.sectionAbout}><AboutPage /></View>
       <View ref={experienceRef} style={styles.sectionExperience}><ExperiencePage /></View>
       <View ref={educationRef} style={styles.sectionEducation}><EducationAwardsPage /></View>
       <View ref={projectsRef} style={styles.sectionProjects}><ProjectsPage /></View>

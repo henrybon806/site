@@ -1,11 +1,12 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import * as Linking from "expo-linking";
+import { Linking, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 import SectionTitle from "../experience/title";
 import Container from "../layout/container";
 import type { ContactItem } from "./contactcard";
 import ContactList from "./list";
+
+const EXTERNAL_URL = "https://resume.henrybonomolo.com/resume.pdf";
 
 export default function ContactPage() {
   const contacts: ContactItem[] = [
@@ -37,23 +38,56 @@ export default function ContactPage() {
 
           <Text style={styles.lead}>
             I enjoy meeting people and building things together. If you want to connect,
-            collaborate, or jam on ideas, reach out using any channel below.
+            collaborate, or explore new ideas, reach out using any channel below.
           </Text>
 
           <View style={styles.card}>
             <ContactList items={contacts} />
 
             <Text style={styles.caption}>
-              Open to internships, research collabs, and product builds. Students and robotics
-              folks: feel free to reach out.
+              I'm interested in internships, research, and hands-on builds or projects. I also mentor robotics teams and enjoy working with diverse & curious teams.
             </Text>
-
+            
             <Pressable
               style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
-              onPress={() => Linking.openURL("/resume")}
+              onPress={async () => {
+                const fileName = "Henry_Bonomolo_Resume.pdf";
+
+                if (Platform.OS === "web") {
+                  try {
+                    const res = await fetch(EXTERNAL_URL, { mode: "cors", cache: "no-store" });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    const blob = await res.blob();
+                    const url = URL.createObjectURL(blob);
+
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = fileName; 
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    URL.revokeObjectURL(url);
+                  } catch (e) {
+                    window.open(EXTERNAL_URL, "_blank", "noopener,noreferrer");
+                  }
+                  return;
+                }
+
+                Linking.openURL(EXTERNAL_URL);
+              }}
             >
-              <Text style={styles.ctaText}>Download resume</Text>
+              <Text style={styles.ctaText}>Download Resume</Text>
             </Pressable>
+
+            <Text style={styles.caption}>
+               Alternatively, you can always view the full PDF here: {" "}
+              <Text
+                style={{ fontWeight: "600", textDecorationLine: "underline" }}
+                onPress={() => Linking.openURL("https://resume.henrybonomolo.com")}
+              >
+                resume.henrybonomolo.com
+              </Text>
+            </Text>
           </View>
         </View>
       </Container>
@@ -92,6 +126,7 @@ const styles = StyleSheet.create({
   caption: { textAlign: "center", color: "#4B5563", marginTop: 12, marginBottom: 6 },
   cta: {
     marginTop: 14,
+    marginBottom: 7,
     backgroundColor: "#111827",
     paddingHorizontal: 18,
     paddingVertical: 10,
@@ -99,5 +134,4 @@ const styles = StyleSheet.create({
   },
   ctaPressed: { opacity: 0.9 },
   ctaText: { color: "#FFFFFF", fontWeight: "700" },
-  // theme accents (for future use)
 });

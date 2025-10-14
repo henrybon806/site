@@ -11,7 +11,7 @@ export default function ProjectsPage() {
     {
       title: "ARES - FTC Analytics",
       year: "2024–present",
-      image: { uri: "https://placehold.co/640x400?text=ARES" },
+      image: require("../../assets/images/ares-bot.png"),
       summary: "Public stats and Discord bot for FTC teams: OPR, rankings, match insights.",
       tags: ["TypeScript", "React/Expo", "Supabase", "Postgres", "Discord Bot"],
       linkText: "View Live Site",
@@ -26,10 +26,10 @@ export default function ProjectsPage() {
     {
       title: "Spike Inclusive (iPad)",
       year: "2024",
-      image: { uri: "https://placehold.co/640x400?text=Spike+Inclusive" },
+      image: require("../../assets/images/spike-inclusive.png"),
       summary: "Accessible LEGO Spike programming via Bluetooth LE with guided blocks.",
       tags: ["Expo", "iOS", "BLE", "Education"],
-      linkText: "App",
+      linkText: "View Live App",
       linkUrl: "https://apps.apple.com/us/app/spike-inclusive/id6751004045",
       details: [
         "Custom block flows and error-handling for classrooms",
@@ -40,7 +40,7 @@ export default function ProjectsPage() {
     {
       title: "FitRealm",
       year: "2024",
-      image: { uri: "https://placehold.co/640x400?text=FitRealm" },
+      image: require("../../assets/images/fit-realm.png"),
       summary: "Gamified fitness app with quests, streaks, and real-time progress.",
       tags: ["React Native", "TypeScript", "Supabase", "Auth"],
       linkText: "View on Github",
