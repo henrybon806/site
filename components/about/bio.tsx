@@ -11,15 +11,15 @@ export default function BioParagraphs({ center = false }: Props) {
         
         {/* Paragraph 1 */}
         <Text style={[styles.p, center && styles.centerP]}>
-        Hi! I’m Henry Bonomolo, a UC Berkeley Computer Science undergrad who likes building systems that solve real problems. Most of my work sits where education, data, and robotics overlap. I built ARES (analytical robotics evaluation system), a public FTC analytics platform and Discord bot used by hundreds of robotics teams, and Spike Inclusive, an iPad app that helps students program LEGO Spike robots in more accessible ways. What keeps me hooked is turning chaotic ideas into things that actually make a difference for teams on the ground.
+        Hi! I'm Henry Bonomolo, a UC Berkeley CS undergrad who likes building systems where education, data, and robotics overlap. I built ARES, a public FTC analytics platform and Discord bot used by hundreds of robotics teams, and Spike Inclusive, an iPad app that makes programming LEGO Spike robots more accessible.
         </Text>
 
         <Text style={[styles.p, center && styles.centerP]}>
-        I split my time between building, mentoring, and research-heavy side projects. At Energesque I designed a solar data API pipeline, and at the University of Arizona I helped build an Android app that measures heart activity for stress research. I still work closely with the FTC community I came from (ARES started as a tool I wished I had while leading and mentoring robotics teams).
+        I'm currently course staff for CS 188 (Intro to AI) at Berkeley, and this summer I interned as an AI and Cloud Engineer at Oracle, building agent tooling on the Oracle AI Data Platform. Before that, I built a solar data API pipeline at Energesque and worked on an Android app measuring heart activity for stress research at the University of Arizona.
         </Text>
 
         <Text style={[styles.p, center && styles.centerP]}>
-        Lately I’ve been diving into GPU-accelerated design automation, machine learning for decision-making, and the art of keeping data pipelines and interfaces simple enough to trust. I care about clarity, reproducibility, and actually shipping things. If it helps people build, learn, or compete better, that’s where I want to be.
+        Lately I've been diving into GPU-accelerated design automation and ML for decision-making, always trying to keep pipelines and interfaces simple enough to trust. If it helps people build, learn, or compete better, that's where I want to be.
         </Text>
       </View>
     </View>

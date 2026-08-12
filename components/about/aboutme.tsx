@@ -35,7 +35,8 @@ export default function AboutPage() {
                 center={!isWide}
                 items={[
                   { value: "5+", label: "Projects built" },
-                  { value: "3.67", label: "UC Berkeley GPA" },
+                  { value: "3.7", label: "UC Berkeley GPA" },
+                  { value: "300+", label: "Students Taught" },
                 ]}
               />
             </View>
