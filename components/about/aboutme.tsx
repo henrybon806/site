@@ -1,75 +1,34 @@
+import { colors, fonts } from "@/constants/theme";
 import React from "react";
-import { StyleSheet, useWindowDimensions, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import SectionTitle from "../experience/title";
 import Container from "../layout/container";
-import BioParagraphs from "./bio";
-import PhotoCard from "./photocard";
-import Portrait from "./portrait";
-import StatsRow from "./statrow";
-import AboutTitle from "./title";
+
+const PARAGRAPHS = [
+  "I'm Henry, a CS student at UC Berkeley. Most of what I build is backend and systems work, like APIs, cloud infrastructure, and software that controls hardware.",
+  "I'm a research assistant at Lawrence Berkeley National Lab, where I'm automating laser experiments. Each station has its own computer running an API, and I'm building the central system that queues tasks, moves samples between stations with a gantry, and monitors everything. Last summer I interned at Oracle, building APIs and graph-based workflows for AI agents in Oracle Fusion. I filed a patent application for that work.",
+  "I also lead a team of 10+ developers at Mobile Developers of Berkeley. I've been involved in FIRST robotics since high school and still coach and judge FIRST LEGO League, which is where ARES, my stats site and Discord bot for FTC teams, came from. I also built Spike Inclusive, an iPad app that lets students with disabilities program LEGO robots. It's used by 50+ students in my old school district.",
+];
 
 export default function AboutPage() {
-  const { width } = useWindowDimensions();
-  const isWide = width >= 900;
-
   return (
-    <>
-      <View >
-        <Container>
-          <AboutTitle />
-
-          {/* On mobile: show the title (above), then the portrait centered, then the bio + stats.
-              On wide screens: show the original two-column layout with portrait on the right. */}
-          {!isWide && (
-            <View style={styles.mobilePortraitWrap}>
-              <Portrait
-                source={require("../../assets/images/profile.jpeg")}
-                size={300}
-              />
-            </View>
-          )}
-
-          <View style={[styles.hero, isWide ? styles.heroRow : styles.heroCol]}>
-            <View style={[styles.leftCol, !isWide && styles.leftColCenter]}>
-              <BioParagraphs center={!isWide} />
-              <StatsRow
-                center={!isWide}
-                items={[
-                  { value: "5+", label: "Projects built" },
-                  { value: "3.7", label: "UC Berkeley GPA" },
-                  { value: "300+", label: "Students Taught" },
-                ]}
-              />
-            </View>
-
-            {isWide && (
-              <View style={styles.rightCol}>
-                <Portrait
-                  source={require("../../assets/images/profile.jpeg")}
-                  size={350}
-                />
-              </View>
-            )}
-          </View>
-
-          <PhotoCard
-            title="A favorite moment"
-            image={require("../../assets/images/fll.jpg")}
-            caption="Team photo after receiving the FIRST Lego League Mentor & Coach award."
-          />
-        </Container>
-      </View>
-    </>
+    <Container>
+      <SectionTitle title="About" />
+      {PARAGRAPHS.map((p, i) => (
+        <Text key={i} style={[styles.p, i === PARAGRAPHS.length - 1 && styles.last]}>{p}</Text>
+      ))}
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  hero: { marginTop: 24, gap: 60, alignItems: "center", paddingHorizontal: 30 },
-  heroRow: { flexDirection: "row", justifyContent: "space-between" },
-  heroCol: { flexDirection: "column", alignItems: "center" },
-
-  leftCol: { flex: 1, gap: 18, alignSelf: "stretch" },
-  rightCol: { width: 350, alignItems: "stretch" },
-
-  mobilePortraitWrap: { width: "100%", alignItems: "center", marginTop: 8, marginBottom: 8 },
-  leftColCenter: { alignItems: "center" },
+  p: {
+    fontFamily: fonts.sans,
+    fontSize: 16,
+    lineHeight: 26,
+    color: colors.body,
+    marginBottom: 16,
+  },
+  // Same trailing space other sections get from their last entry.
+  last: { marginBottom: 28 },
 });

@@ -14,7 +14,7 @@ import Head from "expo-router/head";
 export default function App() {
   // Get scroll context functions
   const { registerSectionRef } = useScrollContext();
-  
+
   // Create section refs
   const heroRef = useRef<View>(null);
   const aboutRef = useRef<View>(null);
@@ -23,7 +23,7 @@ export default function App() {
   const projectsRef = useRef<View>(null);
   const skillsRef = useRef<View>(null);
   const contactRef = useRef<View>(null);
-  
+
   // Register all section refs with the context
   React.useEffect(() => {
     registerSectionRef("Home", heroRef);
@@ -33,31 +33,39 @@ export default function App() {
     registerSectionRef("Projects", projectsRef);
     registerSectionRef("Skills", skillsRef);
     registerSectionRef("Contact", contactRef);
-    console.log("Registered all section refs");
   }, [registerSectionRef]);
 
   return (
     <View style={{ flex: 1 }}>
       <Head>
         <title>Henry Bonomolo</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+        />
       </Head>
-      <View ref={heroRef}><Hero /></View>
-      <View ref={aboutRef} style={styles.sectionAbout}><AboutPage /></View>
-      <View ref={experienceRef} style={styles.sectionExperience}><ExperiencePage /></View>
-      <View ref={educationRef} style={styles.sectionEducation}><EducationAwardsPage /></View>
-      <View ref={projectsRef} style={styles.sectionProjects}><ProjectsPage /></View>
-      <View ref={skillsRef} style={styles.sectionSkills}><SkillsPage /></View>
-      <View ref={contactRef} style={styles.sectionContact}><ContactPage /></View>
-      <Footer />
+      <View style={styles.page}>
+        <View ref={heroRef}><Hero /></View>
+        <View ref={aboutRef}><AboutPage /></View>
+        <View ref={experienceRef}><ExperiencePage /></View>
+        <View ref={projectsRef}><ProjectsPage /></View>
+        <View ref={educationRef}><EducationAwardsPage /></View>
+        <View ref={skillsRef}><SkillsPage /></View>
+        <View ref={contactRef}><ContactPage /></View>
+        <Footer />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  sectionAbout: { backgroundColor: "#FFFFFF" },
-  sectionExperience: { backgroundColor: "#F9F9F9" }, 
-  sectionEducation: { backgroundColor: "#F6F6F6" }, 
-  sectionProjects: { backgroundColor: "#FBFBFB" },
-  sectionSkills: { backgroundColor: "#F3F3F3" }, 
-  sectionContact: { backgroundColor: "#F6F6F6" },
+  // Transparent reading column; the maze fades out behind it (see CONTENT_FADE in background.tsx).
+  page: {
+    flexGrow: 1,
+    width: "100%",
+    maxWidth: 720,
+    alignSelf: "center",
+  },
 });

@@ -27,8 +27,9 @@ export function MobileDropdown({ isVisible, content, buttonPosition }: MobileDro
       {/* Menu content */}
       <div
         style={{
-          backgroundColor: "rgba(250,250,250,.8)",
-          borderRadius: 8,
+          backgroundColor: "var(--bg)",
+          border: "1px solid var(--line)",
+          borderRadius: 4,
           padding: 12,
           minWidth: 150,
           marginTop: 5,

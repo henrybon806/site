@@ -1,3 +1,4 @@
+import { colors, fonts } from "@/constants/theme";
 import { useScrollContext } from "@/context/ScrollContext";
 import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
@@ -10,9 +11,7 @@ type Item = { label: string; href: string };
 const NAV_ITEMS: Item[] = [
   { label: "About", href: "/about" },
   { label: "Experience", href: "/experience" },
-  { label: "Education", href: "/education" },
   { label: "Projects", href: "/projects" },
-  { label: "Skills", href: "/skills" },
   { label: "Contact", href: "/contact" },
   { label: "Resume", href: "/resume" },
 ];
@@ -21,7 +20,7 @@ export default function HeaderRight() {
   const pathname = usePathname();
   const { width } = useWindowDimensions();
   const [modalVisible, setModalVisible] = useState(false);
-  const isSmallScreen = width < 768; // Threshold for mobile view
+  const isSmallScreen = width < 640; // Threshold for mobile view
   const buttonRef = useRef<View>(null);
   const [buttonPosition, setButtonPosition] = useState({ top: 0, right: 0 });
   
@@ -181,7 +180,7 @@ export default function HeaderRight() {
             style={({ pressed }) => [
               styles.hamburgerButton, 
               pressed && styles.pressed,
-              modalVisible && { backgroundColor: "#e0e0e0" } // Darker when menu is open
+              
             ]}
             onPress={(e) => {
               e.stopPropagation(); // Prevent immediate closing
@@ -189,7 +188,7 @@ export default function HeaderRight() {
             }}
             accessibilityLabel="Toggle navigation menu"
           >
-            <Ionicons name={modalVisible ? "close" : "menu"} size={24} color="#000" />
+            <Ionicons name={modalVisible ? "close" : "menu"} size={20} color={colors.text} />
           </Pressable>
           
           {/* Use our specialized MobileDropdown component for web */}
@@ -244,26 +243,26 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 22,
+    gap: 20,
   },
   link: {
-    paddingHorizontal: 4,
     paddingVertical: 6,
-    borderRadius: 8,
   },
   text: {
-    fontSize: 14,
-    color: "#555555", // Changed to darker gray for contrast with white background
+    fontFamily: fonts.mono,
+    fontSize: 12,
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+    color: colors.muted,
   },
   active: {
-    color: "#000000", // Changed to black for active items
+    color: colors.text,
   },
   pressed: {
     opacity: 0.8,
   },
   hamburgerButton: {
-    padding: 8,
-    borderRadius: 8,
+    padding: 4,
   },
   dropdownContainer: {
     position: "relative",
@@ -285,9 +284,8 @@ const styles = StyleSheet.create({
     marginBottom: 4, // Add space between items
   },
   modalText: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#333",
+    fontSize: 13,
+    color: colors.text,
   },
   dropdownContent: {
     position: "relative",

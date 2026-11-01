@@ -1,161 +1,62 @@
-import { useScrollContext } from "@/context/ScrollContext";
-import { LinearGradient } from 'expo-linear-gradient';
-import * as Linking from "expo-linking";
+import { colors, fonts } from "@/constants/theme";
 import React from "react";
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
-import CircleIconButton from "./circlebutton";
-import PrimarySquareButton from "./squarebutton";
+import { Image, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { LinkRow } from "../contact/getintouch";
+import Container from "../layout/container";
 
 type Props = { name?: string; subtitle?: string };
 
-const openInNewTab = (url: string) => {
-  if (typeof window !== 'undefined' && window.open) {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  } else {
-    Linking.openURL(url);
-  }
-};
-
 export default function Hero({
   name = "Henry Bonomolo",
-  subtitle = "Software Developer & System Designer \n Berkeley, CA",
+  subtitle = "Computer Science at UC Berkeley",
 }: Props) {
-  const { height: windowHeight } = useWindowDimensions();
-  const { scrollToSection } = useScrollContext();
-  
-  const handleExploreClick = () => {
-    scrollToSection("About");
-  };
-  
+  const { width } = useWindowDimensions();
+  const size = width < 640 ? 96 : 140;
+
   return (
-    <View style={[styles.root, { minHeight: windowHeight - 40 }]}>
-      <View style={styles.contentContainer}>
-        <LinearGradient 
-          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0.95)', 'rgba(255,255,255,0.95)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0)']}
-          style={styles.gradientBackground}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-        />
-        <LinearGradient 
-          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0.95)', 'rgba(255,255,255,0.95)', 'rgba(255,255,255,0.5)', 'rgba(255,255,255,0)']}
-          style={styles.gradientBackgroundHorizontal}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-        />
-        <View style={styles.blurOverlay} />
-        <View style={styles.content}>
+    <Container>
+      <View style={styles.intro}>
+        <View style={styles.text}>
           <Text style={styles.title}>{name}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
-
-          <View style={styles.row}>
-            <CircleIconButton
-              icon={{ pack: "ion", name: "logo-github", color: "#6F42C1" }}
-              accessibilityLabel="Open GitHub"
-              style={styles.githubBtn}
-              onPress={() => openInNewTab("https://github.com/henrybon806")}
-            />
-            <CircleIconButton
-              icon={{ pack: "ion", name: "logo-linkedin", color: "#0A66C2" }}
-              accessibilityLabel="Open LinkedIn"
-              style={styles.linkedinBtn}
-              onPress={() => openInNewTab("https://www.linkedin.com/in/henrybonomolo")}
-            />
-            <CircleIconButton
-              icon={{ pack: "ion", name: "mail-outline", color: "#EA4335" }}
-              accessibilityLabel="Send Email"
-              style={styles.emailBtn}
-              onPress={() => Linking.openURL("mailto:hbono@berkeley.edu")}
-            />
+          <Text style={styles.location}>Berkeley, CA</Text>
+          <View style={styles.links}>
+            <LinkRow />
           </View>
-
-          <PrimarySquareButton label="Explore" onPress={handleExploreClick} />
         </View>
+        <Image
+          source={require("../../assets/images/profile.jpeg")}
+          style={[styles.avatar, { width: size, height: size, borderRadius: size / 2 }]}
+        />
       </View>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    minHeight: 520,
-    flexGrow: 1,
-    paddingHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 18,
-  },
-  contentContainer: {
-    position: "relative",
-    width: "100%",
-    maxWidth: 450,
-    paddingVertical: 60,
-    paddingHorizontal: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 30,
-    overflow: "hidden",
-  },
-  gradientBackground: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    
-  },
-  gradientBackgroundHorizontal: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    opacity: 0.4,
-  },
-  blurOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(255,255,255,0.08)",
-  },
-  content: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 18,
-    paddingVertical: 20,
-  },
+  intro: { flexDirection: "row", alignItems: "center", gap: 24 },
+  avatar: { borderWidth: 1, borderColor: colors.line },
+  text: { flex: 1 },
   title: {
-    fontSize: 64,
-    lineHeight: 68,
-    fontWeight: "900",
-    color: "#111827",
-    textAlign: "center",
+    fontFamily: fonts.sans,
+    fontSize: 26,
+    fontWeight: "600",
+    letterSpacing: -0.5,
+    color: colors.text,
   },
   subtitle: {
-    fontSize: 20,
-    color: "#374151",
-    textAlign: "center",
+    fontFamily: fonts.sans,
+    fontSize: 16,
+    color: colors.body,
     marginTop: 4,
   },
-  row: {
-    flexDirection: "row",
-    gap: 16,
-    marginVertical: 8,
+  location: {
+    fontFamily: fonts.mono,
+    fontSize: 12,
+    color: colors.muted,
+    marginTop: 4,
   },
-  githubBtn: {
-    borderColor: "#E9E2FF",
-    backgroundColor: "#F3F0FF",
-  },
-  linkedinBtn: {
-    borderColor: "#D6EAFB",
-    backgroundColor: "#E6F2FB",
-  },
-  emailBtn: {
-    borderColor: "#FFE6E4",
-    backgroundColor: "#FFF1F0",
-  },
+  links: { marginTop: 20, marginBottom: 12 },
 });
 
   // Type declaration for window.open (for TypeScript)

@@ -1,10 +1,10 @@
 
 import Header from "@/components/header/header";
-import ScrollProgressBar from "@/components/ui/ScrollProgressBar";
-import LifeBackground from "@/context/background";
+import PageMaze from "@/components/layout/pagemaze";
 import { ScrollProvider, useScrollContext } from "@/context/ScrollContext";
 import { Slot } from "expo-router";
-import React from "react";
+import { ensureThemeLoaded } from "@/constants/theme";
+import React, { useEffect } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function RootLayout() {
@@ -16,32 +16,21 @@ export default function RootLayout() {
 }
 
 function AppContent() {
-  const { scrollViewRef, handleScroll } = useScrollContext();
-  
+  const { scrollViewRef } = useScrollContext();
+
+  useEffect(ensureThemeLoaded, []);
+
   return (
     <View style={{ flex: 1 }}>
+      <PageMaze />
       <Header name="Henry Bonomolo" />
-      <ScrollView 
-        ref={scrollViewRef} 
-        style={{ flex: 1 }} 
+      <ScrollView
+        ref={scrollViewRef}
+        style={{ flex: 1 }}
         contentContainerStyle={{ flexGrow: 1 }}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
       >
-        <LifeBackground 
-          cellSize={16}
-          pathColor="#0c4a6e"
-          visitedColor="#0c4a6e"
-          wallColor="#1e3a5f"
-          bgColor="#0b1020"
-          opacity={0.9}
-          tickMs={50}
-        />
         <Slot />
       </ScrollView>
-      
-      {/* Progress bar at bottom of screen */}
-      {typeof window !== 'undefined' && <ScrollProgressBar />}
     </View>
   );
 }

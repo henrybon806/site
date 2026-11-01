@@ -1,86 +1,122 @@
+import { colors, fonts } from "@/constants/theme";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Container from "../layout/container";
-import ExperienceTimeline from "./timeline";
+import Entry from "../layout/entry";
+import OrgLogo from "../layout/orglogo";
 import SectionTitle from "./title";
 
-export default function ExperiencePage() {
-  return (
-    <>
-      <View style={styles.page}>
-        <Container>
-          <SectionTitle title="Experience" accent="#16A34A" />
+// Ongoing roles first, then past roles, each newest first.
+const EXPERIENCE = [
+  {
+    title: "Research Assistant · Lawrence Berkeley National Lab",
+    url: "https://www.lbl.gov",
+    logo: require("../../assets/images/logos/lbnl.png"),
+    date: "2025–Present",
+    body: "Autonomous systems research in the Laser Technologies Group, automating laser experiments across stations with a 3-axis gantry. I'm building the infrastructure that connects each station's computer, running its own API-backed threads, to one central machine that queues tasks and monitors the whole system, and I wrote the gantry's BFS-based motion planning. I also trained a PyTorch model that finds the horizon line in droplet images for contact angle measurement; it now runs in real time on a live camera feed in the lab.",
+    kind: "Research",
+    tags: ["Python", "FastAPI", "PyTorch", "Distributed systems"],
+  },
+  {
+    title: "Project Manager · Mobile Developers of Berkeley",
+    url: "https://mdb.dev",
+    logo: require("../../assets/images/logos/mdb.png"),
+    date: "2025–Present",
+    body: "Lead a team of 10+ developers contracted to build full-stack products end to end for startups. Right now that's Baro, an early-stage startup, where we're building its web UI and data workflows.",
+    kind: "Leadership",
+    tags: ["React Native", "TypeScript", "Supabase"],
+  },
+  {
+    title: "AI & Cloud Engineer Intern · Oracle",
+    url: "https://www.oracle.com",
+    logo: require("../../assets/images/logos/oracle.png"),
+    date: "2026",
+    body: "Built AI-driven workflows for internal cloud systems, working directly with customers on the agent tooling they needed for Oracle Cloud Infrastructure. Designed APIs and graph-based workflows integrated into Oracle Fusion that let agents build workflows autonomously, and automated node-level token consumption reports with Oracle AI Data Platform. Filed a patent application for this work.",
+    kind: "Internship",
+    tags: ["OCI", "Oracle Fusion", "API design", "Agents"],
+  },
+  {
+    title: "Reader · CS 188, UC Berkeley",
+    url: "https://inst.eecs.berkeley.edu/~cs188/",
+    logo: require("../../assets/images/logos/berkeley.png"),
+    date: "2026",
+    body: "Course staff for Introduction to Artificial Intelligence over the summer: wrote exam questions, supported exam infrastructure, and taught students one-on-one in office hours.",
+    kind: "Teaching",
+    tags: ["Python", "AI"],
+  },
+  {
+    title: "Solar Data API Intern · Energesque",
+    url: "https://www.linkedin.com/company/energesque",
+    logo: require("../../assets/images/logos/energesque.png"),
+    date: "2024–2025",
+    body: "Built APIs that process, clean, and aggregate solar irradiance data for machine-learning energy forecasting models, and a Java utility that normalizes large JSON datasets into CSV for analysis.",
+    kind: "Internship",
+    tags: ["Python", "Java", "REST"],
+  },
+];
 
-          <ExperienceTimeline
-            items={[
-              {
-                role: "Course Staff, CS 188 (Introduction to AI)",
-                org: "University of California, Berkeley",
-                link: "https://www.berkeley.edu",
-                location: "Berkeley, CA",
-                date: "May 2026 – Present",
-                description:
-                  "Serving as course staff for CS 188, supporting students on core AI topics including search, Bayes nets, MDPs, and reinforcement learning. Holding office hours and grading exams and assignments.",
-                tags: ["AI", "Teaching", "Bayes Nets","Reinforcement Learning", "Python"],
-              },
-              {
-                role: "AI & Cloud Engineer Intern",
-                org: "Oracle",
-                link: "https://www.oracle.com",
-                location: "Redwood Shores, CA",
-                date: "May 2026 – August 2026",
-                description:
-                  "Built agentic workflows on the Oracle AI Data Platform as part of a capstone project, designing and integrating AI agents into cloud data pipelines.",
-                tags: ["AI Agents", "Cloud", "Oracle AI Data Platform", "Python", "SQL"],
-              },
-              {
-                role: "React Native & API Developer",
-                org: "Mobile Developers of Berkeley",
-                link: "https://mdb.dev",
-                location: "Berkeley, CA",
-                date: "January 2025 – Present",
-                description:
-                  "Building full-stack mobile apps with React Native and Supabase. Working on API design, authentication flows, and scalable database structures for real-world client projects.",
-                tags: ["React Native", "Supabase", "TypeScript", "API Design"],
-              },
-              {
-                role: "Solar Data API Intern",
-                org: "Energesque",
-                link: "https://www.linkedin.com/company/energesque/",
-                location: "Remote / Berkeley, CA / Irvine, CA",
-                date: "August 2024 – May 2025",
-                description:
-                  "Developing a pipeline that aggregates and serves solar irradiance and power data through a REST API. Focused on performance, reliability, and clean data transformation from NOAA and NREL sources.",
-                tags: ["Python", "APIs", "Data Engineering", "Cloud"],
-              },
-              {
-                role: "Research & Developer Intern",
-                org: "University of Arizona – Electrical Engineering Lab",
-                link: "https://www.arizona.edu",
-                location: "Tucson, AZ",
-                date: "May 2023 – August 2024",
-                description:
-                  "Building an Android app to collect heart rate and RMSSD metrics for stress analysis in human trials. Integrated Bluetooth EKG sensors and automated HRV computation for real-time feedback.",
-                tags: ["Android", "Biomedical Research", "Signal Processing", "Bluetooth"],
-              },
-              // {
-              //   role: "President & Lead Programmer",
-              //   org: "FIRST Tech Challenge Robotics Team 14584",
-              //   link: "https://pioneer327.tech",
-              //   location: "Tucson, AZ",
-              //   date: "August 2020 – May 2024",
-              //   description:
-              //     "Led software and strategy for a state-champion robotics team. Developed autonomous navigation systems using computer vision and sensor fusion. Mentored new programmers and launched ARES, a public FTC analytics platform used by teams worldwide.",
-              //   tags: ["Robotics", "Computer Vision", "Leadership", "Python"],
-              // },
-            ]}
-          />
-        </Container>
-      </View>
-    </>
+// The rail is a timeline from now (top) back to the first role (bottom).
+// Ongoing roles are marked "Current" next to their kind.
+export default function ExperiencePage() {
+  const isCurrent = (date: string) => date.endsWith("Present");
+  const firstYear = EXPERIENCE[EXPERIENCE.length - 1].date.slice(0, 4);
+
+  return (
+    <Container>
+      <SectionTitle title="Experience" />
+      <Text style={styles.railLabel}>Now</Text>
+      {EXPERIENCE.map((e) => (
+        <View key={e.title} style={styles.row}>
+          <View style={styles.rail}>
+            <View style={styles.lineTop} />
+            <View style={styles.dot} />
+            <View style={styles.line} />
+          </View>
+          <View style={styles.logo}>
+            <OrgLogo source={e.logo} url={e.url} />
+          </View>
+          <View style={styles.entry}>
+            <Entry
+              title={e.title}
+              orgUrl={e.url}
+              date={e.date}
+              body={e.body}
+              tags={e.tags}
+              kind={isCurrent(e.date) ? `${e.kind} · Current` : e.kind}
+            />
+          </View>
+        </View>
+      ))}
+      <Text style={styles.railLabel}>{firstYear}</Text>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  page: { flex: 1 },
+  row: { flexDirection: "row" },
+  rail: { width: 9, alignItems: "center", marginRight: 18 },
+  // Same color and weight as the maze paths, so the timeline reads as the same thread.
+  lineTop: { height: 6, width: 1.5, backgroundColor: colors.accent, opacity: 0.35 },
+  line: { flex: 1, width: 1.5, backgroundColor: colors.accent, opacity: 0.35 },
+  dot: {
+    width: 9,
+    height: 9,
+    borderRadius: 5,
+    borderWidth: 1.5,
+    borderColor: colors.accent,
+    backgroundColor: colors.bg,
+  },
+  railLabel: {
+    width: 40,
+    marginLeft: -15.5, // centers the label over the 9px rail
+    textAlign: "center",
+    fontFamily: fonts.mono,
+    fontSize: 10,
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+    color: colors.muted,
+    paddingVertical: 4,
+  },
+  logo: { marginRight: 14 },
+  entry: { flex: 1 },
 });
