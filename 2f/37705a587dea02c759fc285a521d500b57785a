@@ -1,0 +1,127 @@
+components/experience/experience.tsx
+  s_c00c0837a1d06d::t_3e8f76ce4b517d 15-20,28-32,40-45,53-57,65-69,79,99
+components/layout/pagemaze.tsx
+  s_c00c0837a1d06d::t_7e58ecae12b7aa 439,451-459,462
+  s_c00c0837a1d06d::t_0c681c2fad3ae1 1
+  s_c00c0837a1d06d::t_58b3a93eb002fe 25-35,293,303-319,342,436-437,440-446,460-461,463-464,468-473,513,521-522,534-557
+  s_c00c0837a1d06d::t_706a564948b05d 465-467
+  s_c00c0837a1d06d::t_e217b6440d5084 523-533
+.github/workflows/deploys.yml
+  s_c00c0837a1d06d::t_d36c681c241e81 34-37
+components/projects/projects.tsx
+  s_c00c0837a1d06d::t_c95c4af22d202b 6,15,30,45
+  s_c00c0837a1d06d::t_5cf00aba1c8b2b 14,29,44
+  s_c00c0837a1d06d::t_064a68ca78c5d0 54-70
+  s_c00c0837a1d06d::t_77ad91246574f1 20-23,35-38
+  s_c00c0837a1d06d::t_f5e347f043c07f 172
+app.json
+  s_c00c0837a1d06d::t_53e22a460809fd 26
+components/layout/orglogo.tsx
+  s_c00c0837a1d06d::t_5f6a7c4049f4a6 3,10-12,19
+app/index.tsx
+  s_c00c0837a1d06d::t_a7eafa51614c55 1,61
+  s_c00c0837a1d06d::t_e329c646e6d61a 50
+components/education/education.tsx
+  s_c00c0837a1d06d::t_62d8c7cf97666e 18
+public/favicon.svg
+  s_c00c0837a1d06d::t_cf8fd26b94bcbe 1-2,6
+  s_c00c0837a1d06d::t_080c2f56c0c21d 3-5
+components/projects/projectscard.tsx
+  s_c00c0837a1d06d::t_77ad91246574f1 17,24
+  s_c00c0837a1d06d::t_0970edcbf5b5fd 51,59
+  s_c00c0837a1d06d::t_c95c4af22d202b 6,18,27-28,31,35-40,57
+  s_c00c0837a1d06d::t_5cf00aba1c8b2b 7,32-34,58
+  s_c00c0837a1d06d::t_fb8a9d733360f9 3-4,22
+components/layout/entry.tsx
+  s_c00c0837a1d06d::t_f5e347f043c07f 25
+  s_c00c0837a1d06d::t_5f6a7c4049f4a6 4,13-14,20,31,34,36-37,39-42,48-57,120-123,127
+  s_c00c0837a1d06d::t_f84542e39d46b6 22,107
+  s_c00c0837a1d06d::t_13a6485c8ff013 60-77,124-126,128
+context/ScrollContext.tsx
+  s_c00c0837a1d06d::t_605553c29af23f 54
+  s_c00c0837a1d06d::t_f7651c29fefb88 1,9,31,37,41-44,48-53,55-65
+  s_c00c0837a1d06d::t_92f4f7a72cde43 66
+rnweb.d.ts
+  s_c00c0837a1d06d::t_0bcdd927ff8bfb 1-17
+components/landing/landing.tsx
+  s_c00c0837a1d06d::t_064a68ca78c5d0 6,33,73
+  s_c00c0837a1d06d::t_f8e000404d7aea 42
+  s_c00c0837a1d06d::t_26740bcb87e772 3,7,21-23,29-31,34,37,75-83
+  s_c00c0837a1d06d::t_f5e347f043c07f 4,9-19,32,35-36,74
+app/+html.tsx
+  s_c00c0837a1d06d::t_53e22a460809fd 13-39
+components/layout/link.tsx
+  s_c00c0837a1d06d::t_6e711b2e1f3e6f 1-20
+constants/theme.ts
+  s_c00c0837a1d06d::t_a7eafa51614c55 14-20
+  s_c00c0837a1d06d::t_f5e347f043c07f 97-113
+  s_c00c0837a1d06d::t_f636aae788fb6a 13,21
+components/landing/status.tsx
+  s_c00c0837a1d06d::t_59faf1665a0c90 1-2,4,80-81,83-86,88-89,97,117-118,132-133,136-140,142-143,158-167,169-178,180-192
+  s_c00c0837a1d06d::t_8c8408db42bbe9 3,10-13,15-33,36-40,48,50,58,61,67-79,100,103-116,119,121-126,129,131,134-135,141,144-157,168,179
+  s_c00c0837a1d06d::t_7b36df659ca207 7-8,52-57,59,98,102
+  s_c00c0837a1d06d::t_7d701effea4f80 99
+  s_c00c0837a1d06d::t_62d8c7cf97666e 5-6,9,14,34-35,41-47,49,51,60,62-66,82,87,90,92,94-96,101,127,130
+  s_c00c0837a1d06d::t_c650b08dfc0832 91,93,120,128
+components/header/header.tsx
+  s_c00c0837a1d06d::t_a7eafa51614c55 1,35,38
+  s_c00c0837a1d06d::t_f5e347f043c07f 15
+components/projects/diagram.tsx
+  s_c00c0837a1d06d::t_e7beca7a5c2ccf 1-15,19-41,43-69,76-78,83-88,94-98,100-102,104-105,109-111,113-114
+  s_c00c0837a1d06d::t_493a2ff307bfc9 42
+  s_c00c0837a1d06d::t_213dca49b6ba91 70-75,79-82,89-93,99,103,106-108,112
+  s_c00c0837a1d06d::t_8acb11b4fb5b7b 16-18
+components/contact/getintouch.tsx
+  s_c00c0837a1d06d::t_f84542e39d46b6 58
+  s_c00c0837a1d06d::t_b095b34d0e3e5b 10
+  s_c00c0837a1d06d::t_26740bcb87e772 3-4,36-37,40,46-47,49,51,56-57,59-67
+  s_c00c0837a1d06d::t_829c57a544f72f 2,8-9,11-17,20,32-33
+  s_c00c0837a1d06d::t_064a68ca78c5d0 6,25-29,31,39,50
+  s_c00c0837a1d06d::t_234081c96be16a 7
+components/skills/skills.tsx
+  s_c00c0837a1d06d::t_064a68ca78c5d0 14
+  s_c00c0837a1d06d::t_110aea663f6e9c 9,12-13
+  s_c00c0837a1d06d::t_342bd9850e3fac 11
+components/layout/container.tsx
+  s_c00c0837a1d06d::t_a7eafa51614c55 1,34
+components/projects/flipthumb.tsx
+  s_c00c0837a1d06d::t_5cf00aba1c8b2b 1-2,15-16,23-31,35,43-44,53-54,86-105,108,112-113
+  s_c00c0837a1d06d::t_b00f40bc0c086c 3-14,17-22,32-34,36-42,45-52,55-85,106-107,109-111
+components/footer/footer.tsx
+  s_c00c0837a1d06d::t_829c57a544f72f 4,67,73-74,130
+  s_c00c0837a1d06d::t_fe0ea27b6dd5e4 48,50-52
+  s_c00c0837a1d06d::t_064a68ca78c5d0 76
+  s_c00c0837a1d06d::t_ccfe9044604935 79-82,84,116,122
+  s_c00c0837a1d06d::t_d36c681c241e81 43-47,49,53-63,89
+  s_c00c0837a1d06d::t_a7eafa51614c55 1,99
+  s_c00c0837a1d06d::t_e329c646e6d61a 5,7,64,71-72,77-78,83,85-88,90,108-115,117-121,124,126-127,131
+  s_c00c0837a1d06d::t_f5e347f043c07f 69
+components/experience/title.tsx
+  s_c00c0837a1d06d::t_5f6a7c4049f4a6 10
+app/_layout.tsx
+  s_c00c0837a1d06d::t_f5e347f043c07f 29
+components/header/rightside.tsx
+  s_c00c0837a1d06d::t_f84542e39d46b6 21-40,192,265-267
+  s_c00c0837a1d06d::t_fb8a9d733360f9 5-8,43,45,49,140-141,143-144
+components/about/aboutme.tsx
+  s_c00c0837a1d06d::t_85978c250cde7d 9-10
+  s_c00c0837a1d06d::t_342bd9850e3fac 8
+components/layout/usewidth.ts
+  s_c00c0837a1d06d::t_da0aca73f6495c 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2f37705a587dea02c759fc285a521d500b57785a",
+  "prompts": {},
+  "sessions": {
+    "s_c00c0837a1d06d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0492b269-7217-4f1b-9a22-1e8e02f88ae6",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Henry Bonomolo <hbono@berkeley.edu>"
+    }
+  }
+}
