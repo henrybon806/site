@@ -26,6 +26,7 @@ function AppContent() {
       <Header name="Henry Bonomolo" />
       <ScrollView
         ref={scrollViewRef}
+        dataSet={{ print: "scroll" }}
         style={{ flex: 1 }}
         contentContainerStyle={{ flexGrow: 1 }}
       >

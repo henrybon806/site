@@ -1,25 +1,22 @@
 import { colors, fonts } from "@/constants/theme";
 import React from "react";
-import { Image, ImageSourcePropType, Pressable, StyleSheet, Text } from "react-native";
-import { openLink } from "../contact/getintouch";
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 
 type Props = { source?: ImageSourcePropType; letter?: string; url?: string };
 
 // Small square organization logo; falls back to a letter tile when there's no logo.
 export default function OrgLogo({ source, letter, url }: Props) {
   return (
-    <Pressable
-      disabled={!url}
-      onPress={url ? () => openLink(url) : undefined}
-      accessibilityRole={url ? "link" : undefined}
-      style={({ pressed }) => [styles.tile, pressed && { opacity: 0.7 }]}
+    <View
+      style={styles.tile}
+      {...((url ? { href: url, hrefAttrs: { target: "_blank", rel: "noopener noreferrer" }, role: "link" } : {}) as object)}
     >
       {source ? (
         <Image source={source} style={styles.image} />
       ) : (
         <Text style={styles.letter}>{letter}</Text>
       )}
-    </Pressable>
+    </View>
   );
 }
 

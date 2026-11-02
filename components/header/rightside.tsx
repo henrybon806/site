@@ -1,9 +1,11 @@
 import { colors, fonts } from "@/constants/theme";
 import { useScrollContext } from "@/context/ScrollContext";
-import { Ionicons } from "@expo/vector-icons";
 import { usePathname } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
-import { Linking, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { RESUME_URL } from "../contact/getintouch";
+import Link from "../layout/link";
+import { useWindowWidth } from "../layout/usewidth";
 import { MobileDropdown } from "./MobileDropdown";
 
 type Item = { label: string; href: string };
@@ -16,20 +18,35 @@ const NAV_ITEMS: Item[] = [
   { label: "Resume", href: "/resume" },
 ];
 
+// Drawn with Views instead of an icon font, so the page doesn't download a whole font for it.
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <View style={styles.icon}>
+      {open ? (
+        <>
+          <View style={[styles.bar, styles.barCross, { transform: [{ rotate: "45deg" }] }]} />
+          <View style={[styles.bar, styles.barCross, { transform: [{ rotate: "-45deg" }] }]} />
+        </>
+      ) : (
+        <>
+          <View style={styles.bar} />
+          <View style={styles.bar} />
+          <View style={styles.bar} />
+        </>
+      )}
+    </View>
+  );
+}
+
 export default function HeaderRight() {
   const pathname = usePathname();
-  const { width } = useWindowDimensions();
+  const width = useWindowWidth();
   const [modalVisible, setModalVisible] = useState(false);
-  const isSmallScreen = width < 640; // Threshold for mobile view
+  const isSmallScreen = width > 0 && width < 640; // desktop layout until the real width is known
   const buttonRef = useRef<View>(null);
   const [buttonPosition, setButtonPosition] = useState({ top: 0, right: 0 });
   
-  let scrollContext: ReturnType<typeof useScrollContext> | undefined;
-  try {
-    scrollContext = useScrollContext();
-  } catch {
-    scrollContext = undefined;
-  }
+  const scrollContext = useScrollContext();
 
   const isMainPage = pathname === "/";
   
@@ -120,27 +137,11 @@ export default function HeaderRight() {
 
     if (item.label === "Resume") {
       return (
-        <Pressable
-          key={itemKey}
-          style={({ pressed }) => [
-            styles.link, 
-            inModal && styles.modalLink,
-            pressed && styles.pressed
-          ]}
-          onPress={() => { 
-            Linking.openURL("https://resume.henrybonomolo.com")
-          }}
-          accessibilityRole="link"
-          accessibilityLabel={`Go to ${item.label}`}
-        >
-          <Text style={[
-            styles.text, 
-            inModal && styles.modalText,
-            active && styles.active
-          ]}>
+        <View key={itemKey} style={[styles.link, inModal && styles.modalLink]}>
+          <Link href={RESUME_URL} style={[styles.text, inModal && styles.modalText]}>
             {item.label}
-          </Text>
-        </Pressable>
+          </Link>
+        </View>
       );
     }
     return (
@@ -188,7 +189,7 @@ export default function HeaderRight() {
             }}
             accessibilityLabel="Toggle navigation menu"
           >
-            <Ionicons name={modalVisible ? "close" : "menu"} size={20} color={colors.text} />
+            <MenuIcon open={modalVisible} />
           </Pressable>
           
           {/* Use our specialized MobileDropdown component for web */}
@@ -261,6 +262,9 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.8,
   },
+  icon: { width: 18, height: 14, justifyContent: "space-between" },
+  bar: { height: 1.5, width: 18, backgroundColor: colors.text, borderRadius: 1 },
+  barCross: { position: "absolute", top: 6 },
   hamburgerButton: {
     padding: 4,
   },

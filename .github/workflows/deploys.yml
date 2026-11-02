@@ -31,7 +31,10 @@ jobs:
       run: npm rebuild
     
     - name: Build with Expo
-      run: npx expo export -p web
+      run: |
+        export EXPO_PUBLIC_COMMIT="$GITHUB_SHA"
+        export EXPO_PUBLIC_BUILT_AT="$(date -u +%Y-%m-%d)"
+        npx expo export -p web
     
     - name: Add CNAME file
       run: echo "yourdomain.com" > ./dist/CNAME

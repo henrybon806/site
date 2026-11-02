@@ -7,7 +7,7 @@ type Props = { title: string };
 export default function SectionTitle({ title }: Props) {
   return (
     <View style={styles.wrap}>
-      <Text style={styles.title}>{title}</Text>
+      <Text role="heading" aria-level={2} style={styles.title}>{title}</Text>
     </View>
   );
 }

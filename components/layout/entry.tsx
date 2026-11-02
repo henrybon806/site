@@ -1,8 +1,7 @@
 import { colors, fonts } from "@/constants/theme";
-import { Feather } from "@expo/vector-icons";
 import React, { PropsWithChildren } from "react";
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
-import { openLink } from "../contact/getintouch";
+import Link from "./link";
 
 type Props = PropsWithChildren<{
   title: string;
@@ -11,44 +10,71 @@ type Props = PropsWithChildren<{
   link?: string;
   orgUrl?: string; // links just the organization: the part of the title after the last " · "
   body?: string;
+  points?: string[];
+  links?: { label: string; url: string }[]; // extra links under the tags, e.g. Live and Code
   tags?: string[];
   style?: StyleProp<ViewStyle>;
 }>;
 
 // One row in a section: "Title · Org" on the left, mono date on the right, then body and tags.
-export default function Entry({ title, kind, date, link, orgUrl, body, tags, style, children }: Props) {
+export default function Entry({ title, kind, date, link, orgUrl, body, points, links, tags, style, children }: Props) {
   const split = orgUrl ? title.lastIndexOf(" · ") : -1;
-  const arrow = <Text> <Feather name="arrow-up-right" size={14} color={colors.text} /></Text>;
+  const arrow = <Text style={styles.arrow}> ↗</Text>;
 
   return (
-    <View style={[styles.wrap, style]}>
+    <View dataSet={{ print: "keep" }} style={[styles.wrap, style]}>
       {kind ? <Text style={styles.kind}>{kind}</Text> : null}
       <View style={styles.header}>
         {split >= 0 ? (
           <Text style={styles.title}>
             {title.slice(0, split + 3)}
-            <Text style={styles.orgLink} onPress={() => openLink(orgUrl!)} accessibilityRole="link">
+            <Link href={orgUrl!} style={styles.orgLink}>
               {title.slice(split + 3)}
               {arrow}
-            </Text>
+            </Link>
           </Text>
-        ) : (
-          <Text style={styles.title} onPress={link ? () => openLink(link) : undefined}>
+        ) : link ? (
+          <Link href={link} style={styles.title}>
             {title}
-            {link ? arrow : null}
-          </Text>
+            {arrow}
+          </Link>
+        ) : (
+          <Text style={styles.title}>{title}</Text>
         )}
         {date ? <Text style={styles.date}>{date}</Text> : null}
       </View>
 
       {body ? <Text style={styles.body}>{body}</Text> : null}
+      {points?.length ? (
+        <View style={styles.points}>
+          {points.map((pt) => (
+            <View key={pt} style={styles.point}>
+              <Text style={styles.bullet}>–</Text>
+              <Text style={styles.pointText}>{pt}</Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
       {children}
 
-      {tags?.length ? (
-        <View style={styles.tags}>
-          {tags.map((t) => (
-            <Text key={t} style={styles.tag}>{t}</Text>
-          ))}
+      {tags?.length || links?.length ? (
+        <View style={styles.footerRow}>
+          {tags?.length ? (
+            <View style={styles.tags}>
+              {tags.map((t) => (
+                <Text key={t} style={styles.tag}>{t}</Text>
+              ))}
+            </View>
+          ) : null}
+          {links?.length ? (
+            <View style={styles.links}>
+              {links.map((l) => (
+                <Link key={l.url} href={l.url} style={styles.extraLink}>
+                  {l.label} ↗
+                </Link>
+              ))}
+            </View>
+          ) : null}
         </View>
       ) : null}
     </View>
@@ -78,6 +104,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: colors.text,
   },
+  arrow: { fontSize: 13 },
   orgLink: {
     textDecorationLine: "underline",
     textDecorationColor: colors.line,
@@ -90,7 +117,15 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     color: colors.body,
   },
-  tags: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 10 },
+  points: { marginTop: 8, gap: 4 },
+  point: { flexDirection: "row", gap: 8 },
+  bullet: { fontFamily: fonts.sans, fontSize: 14, lineHeight: 21, color: colors.muted },
+  pointText: { flex: 1, fontFamily: fonts.sans, fontSize: 14, lineHeight: 21, color: colors.body },
+  // Tags on the left, extra links on the right of the same row; wraps under on narrow widths.
+  footerRow: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 },
+  links: { flexDirection: "row", gap: 16 },
+  extraLink: { fontFamily: fonts.mono, fontSize: 12, color: colors.text, textDecorationLine: "underline", textDecorationColor: colors.line },
+  tags: { flexDirection: "row", flexWrap: "wrap", gap: 6 },
   tag: {
     fontFamily: fonts.mono,
     fontSize: 11,

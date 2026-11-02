@@ -1,5 +1,5 @@
+import { PAGE_MAX } from "@/constants/theme";
 import AboutPage from "@/components/about/aboutme";
-import ContactPage from "@/components/contact/getintouch";
 import EducationAwardsPage from "@/components/education/education";
 import ExperiencePage from "@/components/experience/experience";
 import Footer from "@/components/footer/footer";
@@ -39,12 +39,6 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <Head>
         <title>Henry Bonomolo</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
-        />
       </Head>
       <View style={styles.page}>
         <View ref={heroRef}><Hero /></View>
@@ -53,8 +47,7 @@ export default function App() {
         <View ref={projectsRef}><ProjectsPage /></View>
         <View ref={educationRef}><EducationAwardsPage /></View>
         <View ref={skillsRef}><SkillsPage /></View>
-        <View ref={contactRef}><ContactPage /></View>
-        <Footer />
+        <View ref={contactRef}><Footer /></View>
       </View>
     </View>
   );
@@ -65,7 +58,7 @@ const styles = StyleSheet.create({
   page: {
     flexGrow: 1,
     width: "100%",
-    maxWidth: 720,
+    maxWidth: PAGE_MAX,
     alignSelf: "center",
   },
 });

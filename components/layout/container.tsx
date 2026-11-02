@@ -1,4 +1,4 @@
-import { colors } from "@/constants/theme";
+import { colors, COLUMN_MAX } from "@/constants/theme";
 import React, { PropsWithChildren } from "react";
 import { View, StyleSheet } from "react-native";
 import { useMazeBlock } from "./pagemaze";
@@ -31,7 +31,7 @@ export const boxStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   wrap: {
     width: "100%",
-    maxWidth: 680,
+    maxWidth: COLUMN_MAX,
     alignSelf: "center",
     paddingHorizontal: 20,
   },

@@ -6,10 +6,12 @@ import Container from "../layout/container";
 
 const GROUPS = [
   { label: "Languages", items: "Python, Rust, TypeScript, JavaScript, Java, Swift, C, SQL, SystemVerilog" },
-  { label: "Frameworks", items: "FastAPI, Flask, React Native, React, Node.js" },
+  { label: "Backend", items: "FastAPI, Flask, Node.js, Express, REST APIs, Postgres, Supabase, Firebase" },
   { label: "ML", items: "PyTorch, NumPy, Pandas, computer vision, reinforcement learning, Create ML" },
-  { label: "Infra", items: "Oracle Cloud Infrastructure, AWS, Docker, Postgres, Supabase, Firebase, GitHub Actions, Vercel" },
-  { label: "Hardware", items: "Bluetooth LE, iOS, Android, sensor integration, gantry control" },
+  { label: "Cloud", items: "Oracle Cloud Infrastructure, AWS, Azure, Docker, GitHub Actions, Vercel" },
+  { label: "Frontend", items: "React, Next.js, Tailwind CSS" },
+  { label: "Mobile", items: "React Native, Expo, iOS, Android" },
+  { label: "Hardware", items: "Bluetooth LE, sensor integration, gantry control, FTC robotics" },
 ];
 
 export default function SkillsPage() {

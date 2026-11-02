@@ -1,4 +1,4 @@
-import { colors } from "@/constants/theme";
+import { colors, COLUMN_MAX } from "@/constants/theme";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import HeaderLeft from "./leftside";
@@ -12,7 +12,7 @@ type HeaderProps = {
 // height as the mazes' top border, so its edges continue the mazes' borders.
 export default function Header({ name }: HeaderProps) {
   return (
-    <View style={styles.outer}>
+    <View dataSet={{ print: "hide" }} style={styles.outer}>
       <View style={styles.bar}>
         <View style={styles.background}>
           <View style={styles.row}>
@@ -32,10 +32,10 @@ const styles = StyleSheet.create({
     zIndex: 10,
     paddingTop: 6, // matches EDGE in pagemaze.tsx
   },
-  // Same geometry as Container + its box: 680 max, 4px outside the box on each side.
+  // Same geometry as Container + its box: COLUMN_MAX wide, 4px outside the box on each side.
   bar: {
     width: "100%",
-    maxWidth: 680,
+    maxWidth: COLUMN_MAX,
     alignSelf: "center",
     height: 56,
     paddingHorizontal: 4,

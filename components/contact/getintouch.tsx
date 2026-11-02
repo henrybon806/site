@@ -1,62 +1,69 @@
 import { colors, fonts } from "@/constants/theme";
-import { Feather } from "@expo/vector-icons";
-import React from "react";
-import { Linking, Platform, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Link from "../layout/link";
 
-import SectionTitle from "../experience/title";
-import Container from "../layout/container";
+export const RESUME_URL = "https://resume.henrybonomolo.com";
+
+// Shown spelled out, and the mailto link is only assembled in the browser after mount, so the
+// address never appears in the static HTML that scrapers read.
+export const EMAIL_TEXT = "hbono\u00A0[at]\u00A0berkeley\u00A0[dot]\u00A0edu";
+const EMAIL_PARTS = ["hbono", "berkeley.edu"];
+
+export function useMailto() {
+  const [href, setHref] = useState("#contact");
+  useEffect(() => setHref(`mailto:${EMAIL_PARTS.join("@")}`), []);
+  return href;
+}
 
 export const CONTACT_LINKS = [
-  { label: "Email", href: "mailto:hbono@berkeley.edu" },
+  { label: "Email", href: "email" }, // replaced with useMailto() when rendered
   { label: "LinkedIn", href: "https://www.linkedin.com/in/henrybonomolo" },
   { label: "GitHub", href: "https://github.com/henrybon806" },
-  { label: "Resume", href: "https://resume.henrybonomolo.com" },
 ];
 
-export const openLink = (url: string) => {
-  if (Platform.OS === "web" && !url.startsWith("mailto:")) {
-    window.open(url, "_blank", "noopener,noreferrer");
-  } else {
-    Linking.openURL(url);
-  }
-};
+const FOOTER_LINKS = [
+  ...CONTACT_LINKS,
+  { label: "LeetCode", href: "https://leetcode.com/u/hbono4" },
+  { label: "Resume", href: RESUME_URL },
+];
 
-export function LinkRow({ color = colors.text }: { color?: string }) {
+export function LinkRow({ footer = false }: { footer?: boolean }) {
+  const mailto = useMailto();
+  const links = (footer ? FOOTER_LINKS : CONTACT_LINKS).map((l) => (l.href === "email" ? { ...l, href: mailto } : l));
   return (
     <View style={styles.row}>
-      {CONTACT_LINKS.map((l) => (
-        <Text key={l.label} style={[styles.link, { color }]} onPress={() => openLink(l.href)}>
+      {links.map((l) => (
+        <Link key={l.label} href={l.href} style={styles.link}>
           {l.label}
-          {l.href.startsWith("mailto:") ? null : (
-            <Text> <Feather name="arrow-up-right" size={13} color={color} /></Text>
-          )}
-        </Text>
+          <Text style={styles.arrow}> ↗</Text>
+        </Link>
       ))}
     </View>
   );
 }
 
-export default function ContactPage() {
+// The resume as a clear button, since it's the link recruiters look for first.
+export function ResumeButton() {
   return (
-    <Container>
-      <SectionTitle title="Contact" />
-      <Text style={styles.lead}>
-        Reach out about roles, research, or anything you&apos;re building. The fastest way is
-        hbono@berkeley.edu.
-      </Text>
-      <LinkRow />
-    </Container>
+    <Link href={RESUME_URL} style={styles.button}>
+      Resume ↗
+    </Link>
   );
 }
 
 const styles = StyleSheet.create({
-  lead: {
-    fontFamily: fonts.sans,
-    fontSize: 14,
-    lineHeight: 21,
-    color: colors.body,
-    marginBottom: 14,
+  row: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", columnGap: 20, rowGap: 8 },
+  link: { fontFamily: fonts.sans, fontSize: 14, color: colors.text },
+  arrow: { fontSize: 12 },
+  button: {
+    fontFamily: fonts.mono,
+    fontSize: 12,
+    color: colors.bg,
+    backgroundColor: colors.text,
+    borderRadius: 3,
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    overflow: "hidden",
   },
-  row: { flexDirection: "row", flexWrap: "wrap", gap: 20 },
-  link: { fontFamily: fonts.sans, fontSize: 14 },
 });

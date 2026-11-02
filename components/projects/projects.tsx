@@ -3,6 +3,7 @@ import { colors, fonts } from "@/constants/theme";
 import { Pressable, StyleSheet, Text } from "react-native";
 import SectionTitle from "../experience/title";
 import Container from "../layout/container";
+import { ARES_DIAGRAM, LAB_DIAGRAM, SPIKE_DIAGRAM } from "./diagram";
 import ProjectCard, { ProjectCardData } from "./projectscard";
 
 const FEATURED: ProjectCardData[] = [
@@ -10,27 +11,38 @@ const FEATURED: ProjectCardData[] = [
     title: "labnode + Gantry Manager",
     kind: "Lab automation",
     year: "2026",
-    image: require("../../assets/images/gantry-lab.png"),
+    image: require("../../assets/images/gantry-lab.jpg"),
+    diagram: LAB_DIAGRAM,
     summary:
       "The lab automation stack from my research at Berkeley Lab. labnode wraps an instrument in a small FastAPI service with a background worker and busy/done/error status. Gantry Manager schedules one gantry moving samples between stations over HTTP, enforcing station and motion constraints, and ships simulated nodes so the whole lab runs on one machine.",
     tags: ["Python", "FastAPI", "Scheduling"],
     linkUrl: "https://github.com/henrybon806/gantry-manager",
+    links: [
+      { label: "Gantry Manager code", url: "https://github.com/henrybon806/gantry-manager" },
+      { label: "labnode code", url: "https://github.com/henrybon806/labnode" },
+    ],
   },
   {
     title: "ARES",
     kind: "Data pipeline + Discord bot",
     year: "2024–Present",
-    image: require("../../assets/images/ares-bot.png"),
+    image: require("../../assets/images/ares-bot.jpg"),
+    diagram: ARES_DIAGRAM,
     summary:
       "Stats for FIRST Tech Challenge robotics, used by 500+ students nationwide. A Rust pipeline pulls each season from the FIRST API, solves per-team OPR, ranks every team, and upserts to Supabase on a schedule. A Rust Discord bot serves team stats, match predictions and live results, alongside a TypeScript web front end.",
     tags: ["Rust", "TypeScript", "Supabase", "Discord"],
     linkUrl: "https://ares-bot.com",
+    links: [
+      { label: "Live", url: "https://ares-bot.com" },
+      { label: "Code", url: "https://github.com/ares-hq" },
+    ],
   },
   {
     title: "Spike Inclusive",
     kind: "iPad app",
     year: "2023–Present",
-    image: require("../../assets/images/spike-inclusive.png"),
+    image: require("../../assets/images/spike-inclusive.jpg"),
+    diagram: SPIKE_DIAGRAM,
     summary:
       "React Native iPad app for accessible LEGO Spike Prime programming. I wrote the BLE layer between iOS and the robot hub, including message encoding, chunking, and full opcode support. Used by 50+ students in the Catalina Foothills School District.",
     tags: ["React Native", "iOS", "BLE"],
@@ -39,6 +51,23 @@ const FEATURED: ProjectCardData[] = [
 ];
 
 const MORE: ProjectCardData[] = [
+  {
+    title: "Tendly",
+    kind: "Hackathon · Simular track winner",
+    year: "2026",
+    summary:
+      "Won the Simular track at the world's largest AI hackathon. An AI care assistant for elderly patients: they ask for help by voice, a Claude triage layer ranks each request by urgency on a live caregiver dashboard, Redis keeps patient memory, and automatable tasks go to Simular's computer-use agents.",
+    tags: ["Python", "FastAPI", "Claude", "Redis"],
+    linkUrl: "https://github.com/tendly-ai/tendly",
+  },
+  {
+    title: "Dispatchr",
+    kind: "Hackathon · Cal Hacks 13.0",
+    year: "2026",
+    summary:
+      "Maintenance triage agent built for the Microsoft Challenge. It reads a tenant's report, keeps a probability over the likely causes, researches real local prices, and recommends the cheapest safe fix for a manager to approve. Deterministic safety rules send emergencies straight to on-call.",
+    tags: ["TypeScript", "Agents", "Tool calling"],
+  },
   {
     title: "Flow-kode",
     kind: "Agent tooling",
@@ -140,6 +169,7 @@ export default function ProjectsPage() {
       {FEATURED.map((p) => <ProjectCard key={p.title} data={p} />)}
       {showAll && MORE.map((p) => <ProjectCard key={p.title} data={p} />)}
       <Pressable
+        dataSet={{ print: "hide" }}
         accessibilityRole="button"
         onPress={() => setShowAll((s) => !s)}
         style={({ pressed }) => [styles.toggle, pressed && { opacity: 0.7 }]}

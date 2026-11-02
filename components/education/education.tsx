@@ -15,7 +15,7 @@ const SCHOOLS: School[] = [
     date: "2024–2028",
     body:
       "GPA 3.74 · Expected May 2028\n" +
-      "Coursework: CS 61A, CS 61B, CS 61C, CS 188, EECS 144/244",
+      "Coursework: CS\u00A061A (Structure & Interpretation of Programs) · CS\u00A061B (Data Structures) · CS\u00A061C (Machine Structures) · CS\u00A070 (Discrete Math & Probability) · CS\u00A0170 (Algorithms) · CS\u00A0188 (Artificial Intelligence) · CS\u00A0189 (Machine Learning) · EECS\u00A0144/244 (Design Automation) · Math\u00A054 (Linear Algebra)",
   },
   {
     title: "High School Diploma · Catalina Foothills High School",
